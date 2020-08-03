@@ -6,12 +6,41 @@
 //
 
 import SwiftUI
+import BlogEngine
 
 @main
-struct PublicistApp: App {
-    var body: some Scene {
+struct PublicistApp: App {    
+    var container: CustomPersistentContainer = {
+        let container = CustomPersistentContainer.blogEngineContainer(group: nil)
+        container.loadPersistentStores { (info, error) in
+            if let error = error {
+                fatalError(String(describing: error))
+            }
+        }
+        return container
+    }()
+    
+    var blogEngine: BlogEngine {
+        return BlogEngine(context: container.viewContext)
+    }
+    
+    @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(blogEngine: blogEngine)
+                .environment(\.managedObjectContext, container.viewContext)
+            .onAppear {
+                if try! container.viewContext.count(for: Account.canonicalOrder()) == 0 {
+                    Account.makeDemoAccount(context: container.viewContext)
+                    try! container.viewContext.save()
+                }
+                blogEngine.fetchPosts()
+            }
+        }
+        .windowStyle(HiddenTitleBarWindowStyle())
+        
+        Settings {
+            SettingsView(blogEngine: blogEngine)
+                .environment(\.managedObjectContext, container.viewContext)
         }
     }
 }

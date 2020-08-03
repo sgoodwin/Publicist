@@ -3,10 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
+		9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
+		9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */; };
+		9B586D3B24D7EC5F0072BAE1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */; };
+		9B586D3D24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */; };
+		9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */; };
+		9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3F24D7EC990072BAE1 /* ProgressWithStatus.swift */; };
+		9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3F24D7EC990072BAE1 /* ProgressWithStatus.swift */; };
+		9B586D4324D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D4224D7EE1C0072BAE1 /* PreviewCoreDataStack.swift */; };
+		9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D4224D7EE1C0072BAE1 /* PreviewCoreDataStack.swift */; };
+		9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */; };
+		9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */; };
+		9B75F48924B73934009B8792 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9B75F48824B73934009B8792 /* BlogEngine */; };
+		9B75F48C24B7394C009B8792 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9B75F48B24B7394C009B8792 /* BlogEngine */; };
 		9B8416AC24A349BF0054D12D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416AB24A349BF0054D12D /* Tests_iOS.swift */; };
 		9B8416B724A349BF0054D12D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416B624A349BF0054D12D /* Tests_macOS.swift */; };
 		9B8416B924A349BF0054D12D /* PublicistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B84169024A349BE0054D12D /* PublicistApp.swift */; };
@@ -37,6 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePostsList.swift; sourceTree = "<group>"; };
+		9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAccounts.swift; sourceTree = "<group>"; };
+		9B586D3F24D7EC990072BAE1 /* ProgressWithStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWithStatus.swift; sourceTree = "<group>"; };
+		9B586D4224D7EE1C0072BAE1 /* PreviewCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCoreDataStack.swift; sourceTree = "<group>"; };
+		9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountForm.swift; sourceTree = "<group>"; };
 		9B84169024A349BE0054D12D /* PublicistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicistApp.swift; sourceTree = "<group>"; };
 		9B84169124A349BE0054D12D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B84169224A349BE0054D12D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B75F48C24B7394C009B8792 /* BlogEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B75F48924B73934009B8792 /* BlogEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +108,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B75F48A24B7394C009B8792 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9B84168A24A349BE0054D12D = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +124,7 @@
 				9B8416AA24A349BF0054D12D /* Tests iOS */,
 				9B8416B524A349BF0054D12D /* Tests macOS */,
 				9B84169824A349BE0054D12D /* Products */,
+				9B75F48A24B7394C009B8792 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +135,12 @@
 				9B84169124A349BE0054D12D /* ContentView.swift */,
 				9B84169224A349BE0054D12D /* Assets.xcassets */,
 				9B8416CD24A34A680054D12D /* PostCell.swift */,
+				9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */,
+				9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */,
+				9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */,
+				9B586D3F24D7EC990072BAE1 /* ProgressWithStatus.swift */,
+				9B586D4224D7EE1C0072BAE1 /* PreviewCoreDataStack.swift */,
+				9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -171,6 +207,9 @@
 			dependencies = (
 			);
 			name = iOS;
+			packageProductDependencies = (
+				9B75F48B24B7394C009B8792 /* BlogEngine */,
+			);
 			productName = iOS;
 			productReference = 9B84169724A349BE0054D12D /* Publicist.app */;
 			productType = "com.apple.product-type.application";
@@ -188,6 +227,9 @@
 			dependencies = (
 			);
 			name = macOS;
+			packageProductDependencies = (
+				9B75F48824B73934009B8792 /* BlogEngine */,
+			);
 			productName = macOS;
 			productReference = 9B84169F24A349BE0054D12D /* Publicist.app */;
 			productType = "com.apple.product-type.application";
@@ -262,6 +304,9 @@
 				Base,
 			);
 			mainGroup = 9B84168A24A349BE0054D12D;
+			packageReferences = (
+				9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */,
+			);
 			productRefGroup = 9B84169824A349BE0054D12D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -312,8 +357,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B586D4324D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
+				9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
+				9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9B8416BB24A349BF0054D12D /* ContentView.swift in Sources */,
 				9B8416B924A349BF0054D12D /* PublicistApp.swift in Sources */,
+				9B586D3D24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
+				9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
+				9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9B8416CE24A34A680054D12D /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,8 +373,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
+				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
+				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9B8416BC24A349BF0054D12D /* ContentView.swift in Sources */,
 				9B8416BA24A349BF0054D12D /* PublicistApp.swift in Sources */,
+				9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
+				9B586D3B24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
+				9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9B8416CF24A34A680054D12D /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +468,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -464,6 +523,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -702,6 +763,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sgoodwin/BlogEngine.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B75F48824B73934009B8792 /* BlogEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
+			productName = BlogEngine;
+		};
+		9B75F48B24B7394C009B8792 /* BlogEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
+			productName = BlogEngine;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9B84168B24A349BE0054D12D /* Project object */;
 }

@@ -1,0 +1,79 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BlogEngine",
+        "repositoryURL": "https://github.com/sgoodwin/BlogEngine.git",
+        "state": {
+          "branch": "main",
+          "revision": "97647bb036cab00c03f0357a938c7f749ccc36d2",
+          "version": null
+        }
+      },
+      {
+        "package": "Down",
+        "repositoryURL": "https://github.com/iwasrobbed/Down",
+        "state": {
+          "branch": null,
+          "revision": "427aec0a0ab342246ec02369dea398597b61174a",
+          "version": "0.9.3"
+        }
+      },
+      {
+        "package": "JWT",
+        "repositoryURL": "https://github.com/kylef/JSONWebToken.swift",
+        "state": {
+          "branch": "master",
+          "revision": "45e5d4a0ff5a538d50b1cc3cb04a9b81f08eb95b",
+          "version": null
+        }
+      },
+      {
+        "package": "KeychainSwift",
+        "repositoryURL": "https://github.com/evgenyneu/keychain-swift",
+        "state": {
+          "branch": null,
+          "revision": "96fb84f45a96630e7583903bd7e08cf095c7a7ef",
+          "version": "19.0.0"
+        }
+      },
+      {
+        "package": "MobiledocKit",
+        "repositoryURL": "https://github.com/sgoodwin/MobiledocKit",
+        "state": {
+          "branch": "production",
+          "revision": "0c233eae7ba22cc07a224d9860706dbc5e4aa44f",
+          "version": null
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble",
+        "state": {
+          "branch": null,
+          "revision": "2b1809051b4a65c1d7f5233331daa24572cd7fca",
+          "version": "8.1.1"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick",
+        "state": {
+          "branch": null,
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
+        }
+      },
+      {
+        "package": "Swish",
+        "repositoryURL": "https://github.com/sgoodwin/Swish",
+        "state": {
+          "branch": "production",
+          "revision": "0e02f59d5caa1a6979e49107237cee13dcc0c38d",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
