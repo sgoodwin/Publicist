@@ -10,12 +10,7 @@ import SwiftUI
 extension Progress: ObservableObject {}
 
 struct ProgressWithStatus: View {
-    @ObservedObject var progress: Progress
-    
-    init(progress: Progress) {
-        self.progress = progress
-        print("Progress: \(progress)")
-    }
+    let progress: Progress
     
     var body: some View {
         ProgressView(progress)

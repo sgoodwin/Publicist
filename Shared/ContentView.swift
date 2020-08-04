@@ -23,7 +23,7 @@ struct ContentView: View {
                 ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount)
                 
                 if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount)
+                    SearchablePostsList(account: selectedAccount, blogEngine: blogEngine)
                 } else {
                     Text("Select an account")
                 }

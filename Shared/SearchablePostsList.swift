@@ -23,10 +23,12 @@ struct SearchablePostsList: View {
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     let fetchRequest: FetchRequest<Post>
     let account: Account
+    let blogEngine: BlogEngine
     
-    init(account: Account) {
+    init(account: Account, blogEngine: BlogEngine) {
         self.account = account
         self.fetchRequest = Post.allFrom(account)
+        self.blogEngine = blogEngine
     }
     
     var body: some View {
@@ -44,11 +46,11 @@ struct SearchablePostsList: View {
                         print("share!")
                     }
                     Button("Delete") {
-                        print("Delete")
+                        try! blogEngine.delete(post, fromAccount: account)
                     }
                 }
         }
-        .onDrop(of: [UTType.fileURL], delegate: DropReceiver(selectedAccount: account))
+        .onDrop(of: [UTType.fileURL], delegate: DropReceiver(selectedAccount: account, blogEngine: blogEngine))
     }
     
     func openURL(account: Account, post: Post) {
@@ -62,8 +64,22 @@ struct SearchablePostsList: View {
 
 struct DropReceiver: DropDelegate {
     let selectedAccount: Account
+    let blogEngine: BlogEngine
     
     func performDrop(info: DropInfo) -> Bool {
+        let providers = info.itemProviders(for: [.fileURL])
+        for provider in providers {
+            provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, error in
+                guard let data = item as? Data, let url = URL(dataRepresentation: data, relativeTo: nil) else { return }
+                
+                if let extractor = PostExtractor(url as NSURL) {
+                    let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
+                    let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
+                    try! blogEngine.post(draft, toAccount: selectedAccount)
+                }
+            }
+
+        }
         return true
     }
 }
