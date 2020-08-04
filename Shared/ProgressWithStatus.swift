@@ -17,15 +17,11 @@ struct ProgressWithStatus: View {
         print("Progress: \(progress)")
     }
     
-    @ViewBuilder var body: some View {
-        if progress.isFinished || progress.totalUnitCount == progress.completedUnitCount {
-            EmptyView()
-        } else {
-            ProgressView(progress)
-                .progressViewStyle(LinearProgressViewStyle())
-                .frame(maxWidth: 120)
-                .padding()
-        }
+    var body: some View {
+        ProgressView(progress)
+            .progressViewStyle(LinearProgressViewStyle())
+            .frame(maxWidth: 120)
+            .padding()
     }
 }
 

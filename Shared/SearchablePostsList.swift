@@ -9,22 +9,28 @@ import SwiftUI
 import BlogEngine
 import UniformTypeIdentifiers
 
+extension Post {
+    static func allFrom(_ account: Account) -> FetchRequest<Post> {
+        let request = Self.fetchRequest() as NSFetchRequest<Post>
+        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Post.createdDate, ascending: false)]
+        request.predicate = NSPredicate(format: "account = %@", account)
+        return FetchRequest(fetchRequest: request)
+    }
+}
+
 struct SearchablePostsList: View {
-    @Binding var selectedAccount: Account?
     @State var selectedPost: Post?
+    @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
+    let fetchRequest: FetchRequest<Post>
+    let account: Account
     
-    var body: some View {
-        if let selectedAccount = selectedAccount {
-            listWith(selectedAccount)
-        } else {
-            List(["Select an Account"], id: \.self) { t in
-                Text(t)
-            }
-        }
+    init(account: Account) {
+        self.account = account
+        self.fetchRequest = Post.allFrom(account)
     }
     
-    func listWith(_ account: Account) -> some View {
-        List(account.posts?.sortedArray(using: [NSSortDescriptor(key: "id", ascending: true)]) as? [Post] ?? [], id: \.self, selection: $selectedPost) { post in
+    var body: some View {
+        List(fetchRequest.wrappedValue, id: \.self, selection: $selectedPost) { post in
             PostCell(post: post)
                 .frame(minHeight: 80)
                 .onTapGesture(count: 2) {

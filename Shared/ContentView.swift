@@ -22,19 +22,22 @@ struct ContentView: View {
             NavigationView {
                 ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount)
                 
-                SearchablePostsList(selectedAccount: $selectedAccount)
-                
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button(action: toggleSidebar, label: {
-                            Image(systemName: "rectangle.lefthalf.fill")
-                        })
-                    }
-                    ToolbarItem(placement: .primaryAction) {
-                        Button(action: refresh, label: {
-                            Image(systemName: "arrow.clockwise")
-                        })
-                    }
+                if let selectedAccount = selectedAccount {
+                    SearchablePostsList(account: selectedAccount)
+                } else {
+                    Text("Select an account")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: toggleSidebar, label: {
+                        Image(systemName: "rectangle.lefthalf.fill")
+                    })
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: refresh, label: {
+                        Image(systemName: "arrow.clockwise")
+                    })
                 }
             }
         }
