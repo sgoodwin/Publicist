@@ -29,17 +29,35 @@ struct PublicistApp: App {
     let windowMaker = WindowMaker()
     #endif
     
+    @State var showingDraftSheet: Bool = false
+    @State var draft: Draft?
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             ContentView(blogEngine: blogEngine)
                 .environment(\.managedObjectContext, container.viewContext)
             .onAppear {
-                if try! container.viewContext.count(for: Account.canonicalOrder()) == 0 {
-                    Account.makeDemoAccount(context: container.viewContext)
-                    try! container.viewContext.save()
-                }
+                makeDemoAccountIfNeeded()
                 blogEngine.fetchPosts()
             }
+            .onOpenURL { (url) in
+                if let extractor = PostExtractor(url as NSURL) {
+                    let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
+                    let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
+                    DispatchQueue.main.async {
+                        #if os(macOS)
+                        windowMaker.makeWindow(draft: draft, accounts: accounts)
+                        #else
+                        print(draft.title)
+                        self.draft = draft
+                        self.showingDraftSheet = true
+                        #endif
+                    }
+                }
+            }
+            .sheet(isPresented: $showingDraftSheet, content: {
+                Text(draft?.title ?? "Missing Draft")
+            })
         }
         .commands {
             SidebarCommands()
@@ -56,5 +74,12 @@ struct PublicistApp: App {
                 .environment(\.managedObjectContext, container.viewContext)
         }
         #endif
+    }
+    
+    private func makeDemoAccountIfNeeded() {
+        if try! container.viewContext.count(for: Account.canonicalOrder()) == 0 {
+            Account.makeDemoAccount(context: container.viewContext)
+            try! container.viewContext.save()
+        }
     }
 }
