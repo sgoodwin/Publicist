@@ -15,6 +15,7 @@ struct ListOfAccounts: View {
     
     let progress: Progress
     @Binding var selectedAccount: Account?
+    let blogEngine: BlogEngine
     
     var body: some View {
         VStack {
@@ -22,22 +23,24 @@ struct ListOfAccounts: View {
                 #if os(macOS)
                 Text(verbatim: account.name!)
                 #else
-                NavigationLink(destination: SearchablePostsList(selectedAccount: .constant(account), selectedPost: nil)) {
+                NavigationLink(destination: SearchablePostsList(account: account, blogEngine: blogEngine)) {
                     Text(verbatim: account.name!)
                 }
                 #endif
             }
-            .listStyle(SidebarListStyle())
+            .listStyle(GroupedListStyle())
+//            .listStyle(SidebarListStyle())
             
             ProgressWithStatus(progress: progress)
         }
+        .navigationTitle("Accounts")
     }
 }
 
 struct ListOfAccounts_Previews: PreviewProvider {
     
     static var previews: some View {
-        ListOfAccounts(progress: Progress(), selectedAccount: .constant(nil))
+        ListOfAccounts(progress: Progress(), selectedAccount: .constant(nil), blogEngine: BlogEngine(context: container.viewContext))
             .environment(\.managedObjectContext, container.viewContext)
     }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF0D2518A1900099701B /* WindowMaker.swift */; };
+		9B48BF142518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
+		9B48BF152518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
+		9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF1A2518A7B30099701B /* SharingPIcker.swift */; };
 		9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
 		9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
 		9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */; };
@@ -31,6 +35,10 @@
 		9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B84169224A349BE0054D12D /* Assets.xcassets */; };
 		9B8416CE24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
 		9B8416CF24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
+		9BBAA0E8250F8BD40064407C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0E7250F8BD40064407C /* PreviewView.swift */; };
+		9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0E7250F8BD40064407C /* PreviewView.swift */; };
+		9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
+		9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B48BF0D2518A1900099701B /* WindowMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaker.swift; sourceTree = "<group>"; };
+		9B48BF132518A5810099701B /* View+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Sharing.swift"; sourceTree = "<group>"; };
+		9B48BF1A2518A7B30099701B /* SharingPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingPIcker.swift; sourceTree = "<group>"; };
 		9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePostsList.swift; sourceTree = "<group>"; };
 		9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAccounts.swift; sourceTree = "<group>"; };
@@ -72,6 +83,8 @@
 		9B8416B624A349BF0054D12D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9B8416B824A349BF0054D12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B8416CD24A34A680054D12D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		9BBAA0E7250F8BD40064407C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +154,9 @@
 				9B586D3F24D7EC990072BAE1 /* ProgressWithStatus.swift */,
 				9B586D4224D7EE1C0072BAE1 /* PreviewCoreDataStack.swift */,
 				9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */,
+				9BBAA0E7250F8BD40064407C /* PreviewView.swift */,
+				9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */,
+				9B48BF132518A5810099701B /* View+Sharing.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -169,6 +185,8 @@
 			children = (
 				9B8416A124A349BE0054D12D /* Info.plist */,
 				9B8416A224A349BE0054D12D /* macOS.entitlements */,
+				9B48BF0D2518A1900099701B /* WindowMaker.swift */,
+				9B48BF1A2518A7B30099701B /* SharingPIcker.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -360,7 +378,10 @@
 				9B586D4324D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
 				9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
+				9B48BF142518A5810099701B /* View+Sharing.swift in Sources */,
+				9BBAA0E8250F8BD40064407C /* PreviewView.swift in Sources */,
 				9B8416BB24A349BF0054D12D /* ContentView.swift in Sources */,
+				9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
 				9B8416B924A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9B586D3D24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
 				9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
@@ -373,10 +394,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B48BF152518A5810099701B /* View+Sharing.swift in Sources */,
 				9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
 				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
+				9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */,
+				9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */,
+				9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */,
 				9B8416BC24A349BF0054D12D /* ContentView.swift in Sources */,
+				9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
 				9B8416BA24A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
 				9B586D3B24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
@@ -593,7 +619,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.16;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roundwallsoftware.Publicist;
 				PRODUCT_NAME = Publicist;
 				SDKROOT = macosx;
@@ -617,7 +643,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.16;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roundwallsoftware.Publicist;
 				PRODUCT_NAME = Publicist;
 				SDKROOT = macosx;

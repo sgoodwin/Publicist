@@ -15,30 +15,29 @@ struct ContentView: View {
     @ObservedObject var blogEngine: BlogEngine
     
     @State var selectedAccount: Account?
-    @State var searchText: String = ""
     
     var body: some View {
-        Group {
-            NavigationView {
-                ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount)
-                
-                if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount, blogEngine: blogEngine)
-                } else {
-                    Text("Select an account")
-                }
+        NavigationView {
+            ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount, blogEngine: blogEngine)
+                .frame(minWidth: 200)
+            
+            if let selectedAccount = selectedAccount {
+                SearchablePostsList(account: selectedAccount, blogEngine: blogEngine)
+            } else {
+                Text("Select an account")
             }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: toggleSidebar, label: {
-                        Image(systemName: "rectangle.lefthalf.fill")
-                    })
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button(action: refresh, label: {
-                        Image(systemName: "arrow.clockwise")
-                    })
-                }
+        }
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: toggleSidebar, label: {
+                    Image(systemName: "sidebar.left")
+                })
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button(action: refresh, label: {
+                    Image(systemName: "arrow.clockwise")
+                })
             }
         }
     }

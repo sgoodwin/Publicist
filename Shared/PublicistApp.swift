@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BlogEngine
+import WebKit
 
 @main
 struct PublicistApp: App {    
@@ -24,6 +25,10 @@ struct PublicistApp: App {
         return BlogEngine(context: container.viewContext)
     }
     
+    #if os(macOS)
+    let windowMaker = WindowMaker()
+    #endif
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             ContentView(blogEngine: blogEngine)
@@ -36,11 +41,20 @@ struct PublicistApp: App {
                 blogEngine.fetchPosts()
             }
         }
-        .windowStyle(HiddenTitleBarWindowStyle())
+        .commands {
+            SidebarCommands()
+            ToolbarCommands()
+        }
+//        #if os(macOS)
+//        .windowStyle(HiddenTitleBarWindowStyle())
+//        .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
+//        #endif
         
+        #if os(macOS)
         Settings {
             SettingsView(blogEngine: blogEngine)
                 .environment(\.managedObjectContext, container.viewContext)
         }
+        #endif
     }
 }

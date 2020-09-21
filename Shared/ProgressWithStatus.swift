@@ -14,9 +14,21 @@ struct ProgressWithStatus: View {
     
     var body: some View {
         ProgressView(progress)
-            .progressViewStyle(LinearProgressViewStyle())
-            .frame(maxWidth: 120)
             .padding()
+            .progressViewStyle(CustomProgressStyle())
+            .animation(.default)
+    }
+}
+
+struct CustomProgressStyle: ProgressViewStyle {
+    @ViewBuilder func makeBody(configuration: Configuration) -> some View {
+        if configuration.fractionCompleted != nil && configuration.fractionCompleted != 1.0 {
+            LinearProgressViewStyle().makeBody(configuration: configuration)
+                .transition(.move(edge: .bottom))
+        } else {
+            EmptyView()
+                .transition(.move(edge: .bottom))
+        }        
     }
 }
 

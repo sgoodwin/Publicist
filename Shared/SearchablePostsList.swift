@@ -7,7 +7,12 @@
 
 import SwiftUI
 import BlogEngine
+
+#if !os(macOS)
 import UniformTypeIdentifiers
+#endif
+
+import CoreData
 
 extension Post {
     static func allFrom(_ account: Account) -> FetchRequest<Post> {
@@ -20,6 +25,7 @@ extension Post {
 
 struct SearchablePostsList: View {
     @State var selectedPost: Post?
+    @State var sharingPresented: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     let fetchRequest: FetchRequest<Post>
     let account: Account
@@ -35,22 +41,31 @@ struct SearchablePostsList: View {
         List(fetchRequest.wrappedValue, id: \.self, selection: $selectedPost) { post in
             PostCell(post: post)
                 .frame(minHeight: 80)
-                .onTapGesture(count: 2) {
-                    openURL(account: account, post: post)
-                }
                 .contextMenu {
                     Button("View Article") {
                         openURL(account: account, post: post)
                     }
+                    if post.postStatus == .draft {
+                        Button("Publish") {
+                            try! blogEngine.publishDraftOnServer(post, toAccount: account)
+                        }
+                    }
                     Button("Share") {
-                        print("share!")
+                        share([account.url(for: post)!])
                     }
                     Button("Delete") {
                         try! blogEngine.delete(post, fromAccount: account)
                     }
                 }
         }
-        .onDrop(of: [UTType.fileURL], delegate: DropReceiver(selectedAccount: account, blogEngine: blogEngine))
+        .onDrop(
+            of: [UTType.fileURL],
+            delegate: DropReceiver(
+                selectedAccount: account,
+                accounts: try! managedObjectContext.fetch(Account.canonicalOrder()),
+                blogEngine: blogEngine
+            )
+        )
     }
     
     func openURL(account: Account, post: Post) {
@@ -64,6 +79,7 @@ struct SearchablePostsList: View {
 
 struct DropReceiver: DropDelegate {
     let selectedAccount: Account
+    let accounts: [Account]
     let blogEngine: BlogEngine
     
     func performDrop(info: DropInfo) -> Bool {
@@ -75,7 +91,13 @@ struct DropReceiver: DropDelegate {
                 if let extractor = PostExtractor(url as NSURL) {
                     let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
                     let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
-                    try! blogEngine.post(draft, toAccount: selectedAccount)
+                    DispatchQueue.main.async {
+                        #if os(macOS)
+                        WindowMaker().makeWindow(draft: draft, accounts: accounts)
+                        #else
+                        print("I haven't implemented what to do on iOS yet!")
+                        #endif
+                    }
                 }
             }
 

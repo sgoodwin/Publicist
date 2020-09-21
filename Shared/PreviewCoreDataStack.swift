@@ -12,7 +12,6 @@ import CoreData
 extension PreviewProvider {
     static var container: CustomPersistentContainer {
         let container = CustomPersistentContainer.blogEngineContainer(group: nil)
-        
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         
