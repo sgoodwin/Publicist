@@ -15,6 +15,8 @@ struct ContentView: View {
     @ObservedObject var blogEngine: BlogEngine
     
     @State var selectedAccount: Account?
+    @State var showingDraftSheet: Bool = false
+    @State var draft: Draft?
     
     var body: some View {
         NavigationView {
@@ -27,6 +29,28 @@ struct ContentView: View {
                 Text("Select an account")
             }
         }
+        .onOpenURL { (url) in
+            if let extractor = PostExtractor(url as NSURL) {
+                let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
+                let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
+                DispatchQueue.main.async {
+                    #if os(macOS)
+                    windowMaker.makeWindow(draft: draft, accounts: accounts)
+                    #else
+                    print(draft.title)
+                    self.draft = draft
+                    showingDraftSheet = true
+                    #endif
+                }
+            }
+        }
+        .sheet(isPresented: $showingDraftSheet, content: {
+            if let draft = draft {
+                PreviewView(draft: draft)
+            } else {
+                Text("Missing Draft")
+            }
+        })
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .toolbar {
             ToolbarItem(placement: .navigation) {

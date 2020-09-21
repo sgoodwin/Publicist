@@ -29,35 +29,16 @@ struct PublicistApp: App {
     let windowMaker = WindowMaker()
     #endif
     
-    @State var showingDraftSheet: Bool = false
-    @State var draft: Draft?
-    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             ContentView(blogEngine: blogEngine)
                 .environment(\.managedObjectContext, container.viewContext)
-            .onAppear {
-                makeDemoAccountIfNeeded()
-                blogEngine.fetchPosts()
-            }
-            .onOpenURL { (url) in
-                if let extractor = PostExtractor(url as NSURL) {
-                    let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
-                    let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
-                    DispatchQueue.main.async {
-                        #if os(macOS)
-                        windowMaker.makeWindow(draft: draft, accounts: accounts)
-                        #else
-                        print(draft.title)
-                        self.draft = draft
-                        self.showingDraftSheet = true
-                        #endif
-                    }
+                .onAppear {
+                    makeDemoAccountIfNeeded()
+                    blogEngine.fetchPosts()
+                    
+                    UITableView.appearance().separatorColor = .clear
                 }
-            }
-            .sheet(isPresented: $showingDraftSheet, content: {
-                Text(draft?.title ?? "Missing Draft")
-            })
         }
         .commands {
             SidebarCommands()
@@ -81,5 +62,13 @@ struct PublicistApp: App {
             Account.makeDemoAccount(context: container.viewContext)
             try! container.viewContext.save()
         }
+    }
+}
+
+struct DraftView: View {
+    let draft: Draft
+    
+    var body: some View {
+        Text(draft.title)
     }
 }

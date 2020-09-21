@@ -39,6 +39,14 @@
 		9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0E7250F8BD40064407C /* PreviewView.swift */; };
 		9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
 		9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
+		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
+		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
+		9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
+		9BF4E8BB2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
+		9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */; };
+		9BF4E8C22518EC7C00226C58 /* AccountMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */; };
+		9BF4E8ED2519015500226C58 /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8EC2519015500226C58 /* StatusMenu.swift */; };
+		9BF4E8EE2519015500226C58 /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8EC2519015500226C58 /* StatusMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +93,10 @@
 		9B8416CD24A34A680054D12D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9BBAA0E7250F8BD40064407C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphProcessor.swift; sourceTree = "<group>"; };
+		9BF4E8B22518EA7B00226C58 /* FormFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFields.swift; sourceTree = "<group>"; };
+		9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphsView.swift; sourceTree = "<group>"; };
+		9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenu.swift; sourceTree = "<group>"; };
+		9BF4E8EC2519015500226C58 /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,10 @@
 				9BBAA0E7250F8BD40064407C /* PreviewView.swift */,
 				9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */,
 				9B48BF132518A5810099701B /* View+Sharing.swift */,
+				9BF4E8B22518EA7B00226C58 /* FormFields.swift */,
+				9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */,
+				9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */,
+				9BF4E8EC2519015500226C58 /* StatusMenu.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -379,11 +395,15 @@
 				9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9B48BF142518A5810099701B /* View+Sharing.swift in Sources */,
+				9BF4E8ED2519015500226C58 /* StatusMenu.swift in Sources */,
 				9BBAA0E8250F8BD40064407C /* PreviewView.swift in Sources */,
+				9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */,
 				9B8416BB24A349BF0054D12D /* ContentView.swift in Sources */,
+				9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */,
 				9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
 				9B8416B924A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9B586D3D24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
+				9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */,
 				9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
 				9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9B8416CE24A34A680054D12D /* PostCell.swift in Sources */,
@@ -398,13 +418,17 @@
 				9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
 				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
+				9BF4E8BB2518EAF500226C58 /* ParagraphsView.swift in Sources */,
+				9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */,
 				9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */,
 				9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */,
 				9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */,
 				9B8416BC24A349BF0054D12D /* ContentView.swift in Sources */,
+				9BF4E8EE2519015500226C58 /* StatusMenu.swift in Sources */,
 				9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
 				9B8416BA24A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
+				9BF4E8C22518EC7C00226C58 /* AccountMenu.swift in Sources */,
 				9B586D3B24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
 				9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9B8416CF24A34A680054D12D /* PostCell.swift in Sources */,
