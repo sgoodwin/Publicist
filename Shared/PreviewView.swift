@@ -25,6 +25,7 @@ struct PreviewView: View {
     
     var body: some View {
         VStack {
+            #if os(iOS)
             HStack {
                 Button("Cancel", action: cancel)
                 
@@ -34,6 +35,7 @@ struct PreviewView: View {
                 .disabled(selectedAccount == nil)
             }
             .padding(8)
+            #endif
             
             ParagraphsView(paragraphs: $paragraphs)
             
