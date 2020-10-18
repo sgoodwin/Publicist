@@ -18,6 +18,10 @@ struct ContentView: View {
     @State var showingDraftSheet: Bool = false
     @State var draft: Draft?
     
+    @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
+    
+    let windowMaker = WindowMaker()
+    
     var body: some View {
         NavigationView {
             ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount, blogEngine: blogEngine)
@@ -35,7 +39,7 @@ struct ContentView: View {
                 let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
                 DispatchQueue.main.async {
                     #if os(macOS)
-                    windowMaker.makeWindow(draft: draft, accounts: accounts)
+                    windowMaker.makeWindow(draft: draft, engine: blogEngine, context: managedObjectContext)
                     #else
                     print(draft.title)
                     self.draft = draft
@@ -46,7 +50,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingDraftSheet, content: {
             if let draft = draft {
-                PreviewView(draft: draft)
+                PreviewView(draft: draft, isShowing: $showingDraftSheet, blogEngine: blogEngine)
             } else {
                 Text("Missing Draft")
             }

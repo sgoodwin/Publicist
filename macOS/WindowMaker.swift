@@ -7,12 +7,19 @@
 
 import Cocoa
 import BlogEngine
+import SwiftUI
+import CoreData
 
 class WindowMaker {
     var draftWindow: NSWindow?
     
-    func makeWindow(draft: Draft, accounts: [Account]) {
-        let window = NSWindow(contentViewController: NSHostingController(rootView: PreviewView(draft: draft, accounts: accounts.compactMap({ $0.name})).frame(minWidth: 500, minHeight: 500)))
+    func makeWindow(draft: Draft, engine: BlogEngine, context: NSManagedObjectContext) {
+        let window = NSWindow(
+            contentViewController: NSHostingController(rootView:
+                PreviewView(draft: draft, isShowing: .constant(true), blogEngine: engine).frame(minWidth: 500, minHeight: 500)
+                                                        .environment(\.managedObjectContext, context)
+            )
+        )
         window.title = "New Post"
         window.isOpaque = true
         window.minSize = NSSize(width: 500, height: 500)

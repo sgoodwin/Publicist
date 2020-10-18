@@ -7,10 +7,7 @@
 
 import SwiftUI
 import BlogEngine
-
-#if !os(macOS)
 import UniformTypeIdentifiers
-#endif
 
 import CoreData
 
@@ -27,6 +24,7 @@ struct SearchablePostsList: View {
     @State var selectedPost: Post?
     @State var sharingPresented: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
+    
     let fetchRequest: FetchRequest<Post>
     let account: Account
     let blogEngine: BlogEngine
@@ -63,7 +61,8 @@ struct SearchablePostsList: View {
             delegate: DropReceiver(
                 selectedAccount: account,
                 accounts: try! managedObjectContext.fetch(Account.canonicalOrder()),
-                blogEngine: blogEngine
+                blogEngine: blogEngine,
+                context: managedObjectContext
             )
         )
     }
@@ -81,6 +80,7 @@ struct DropReceiver: DropDelegate {
     let selectedAccount: Account
     let accounts: [Account]
     let blogEngine: BlogEngine
+    let context: NSManagedObjectContext
     
     func performDrop(info: DropInfo) -> Bool {
         let providers = info.itemProviders(for: [.fileURL])
@@ -93,7 +93,7 @@ struct DropReceiver: DropDelegate {
                     let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
                     DispatchQueue.main.async {
                         #if os(macOS)
-                        WindowMaker().makeWindow(draft: draft, accounts: accounts)
+                        WindowMaker().makeWindow(draft: draft, engine: blogEngine, context: context)
                         #else
                         print("I haven't implemented what to do on iOS yet!")
                         #endif

@@ -20,5 +20,6 @@ struct StatusMenu: View {
                 draft.status = .published
             }
         }
+        .menuStyle(AccountMenyStyle())
     }
 }

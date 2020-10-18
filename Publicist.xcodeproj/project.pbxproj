@@ -39,6 +39,8 @@
 		9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0E7250F8BD40064407C /* PreviewView.swift */; };
 		9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
 		9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
+		9BC5D5862521FD910072DBC2 /* DraftButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5D5852521FD910072DBC2 /* DraftButtons.swift */; };
+		9BC5D5872521FD910072DBC2 /* DraftButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5D5852521FD910072DBC2 /* DraftButtons.swift */; };
 		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
@@ -93,6 +95,7 @@
 		9B8416CD24A34A680054D12D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9BBAA0E7250F8BD40064407C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphProcessor.swift; sourceTree = "<group>"; };
+		9BC5D5852521FD910072DBC2 /* DraftButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftButtons.swift; sourceTree = "<group>"; };
 		9BF4E8B22518EA7B00226C58 /* FormFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFields.swift; sourceTree = "<group>"; };
 		9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphsView.swift; sourceTree = "<group>"; };
 		9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenu.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 				9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */,
 				9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */,
 				9BF4E8EC2519015500226C58 /* StatusMenu.swift */,
+				9BC5D5852521FD910072DBC2 /* DraftButtons.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -311,7 +315,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					9B84169624A349BE0054D12D = {
 						CreatedOnToolsVersion = 12.0;
@@ -392,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B586D4324D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
+				9BC5D5862521FD910072DBC2 /* DraftButtons.swift in Sources */,
 				9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9B48BF142518A5810099701B /* View+Sharing.swift in Sources */,
@@ -430,6 +435,7 @@
 				9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
 				9BF4E8C22518EC7C00226C58 /* AccountMenu.swift in Sources */,
 				9B586D3B24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
+				9BC5D5872521FD910072DBC2 /* DraftButtons.swift in Sources */,
 				9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9B8416CF24A34A680054D12D /* PostCell.swift in Sources */,
 			);
@@ -633,6 +639,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
@@ -643,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roundwallsoftware.Publicist;
 				PRODUCT_NAME = Publicist;
 				SDKROOT = macosx;
@@ -657,6 +664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
@@ -667,7 +675,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roundwallsoftware.Publicist;
 				PRODUCT_NAME = Publicist;
 				SDKROOT = macosx;

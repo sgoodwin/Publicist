@@ -28,8 +28,8 @@ struct ListOfAccounts: View {
                 }
                 #endif
             }
-            .listStyle(GroupedListStyle())
-//            .listStyle(SidebarListStyle())
+//            .listStyle(GroupedListStyle())
+            .listStyle(SidebarListStyle())
             
             ProgressWithStatus(progress: progress)
         }

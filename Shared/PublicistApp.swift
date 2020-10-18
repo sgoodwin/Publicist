@@ -37,7 +37,7 @@ struct PublicistApp: App {
                     makeDemoAccountIfNeeded()
                     blogEngine.fetchPosts()
                     
-                    UITableView.appearance().separatorColor = .clear
+//                    UITableView.appearance().separatorColor = .clear
                 }
         }
         .commands {

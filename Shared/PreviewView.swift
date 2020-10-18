@@ -19,37 +19,44 @@ struct PreviewView: View {
     @State var draft: Draft
     @State var selectedAccount: Account?
     
+    @Binding var isShowing: Bool
+    
+    let blogEngine: BlogEngine
+    
     var body: some View {
         VStack {
+            HStack {
+                Button("Cancel", action: cancel)
+                
+                Spacer()
+                
+                Button("Post", action: post)
+                .disabled(selectedAccount == nil)
+            }
+            .padding(8)
+            
             ParagraphsView(paragraphs: $paragraphs)
             
             FormFields(draft: $draft)
             
-            HStack {
-                Button("Cancel") {
-                    print("Cancel!")
-                }
-                
-                Spacer(minLength: 50)
-                
-                AccountMenu(selectedAccount: $selectedAccount)
-                
-                Spacer(minLength: 50)
-                
-                StatusMenu(draft: $draft)
-                
-                Spacer()
-                
-                Button("Post") {
-                    print("Do it! \(draft.title), \(draft.status)")
-                }
-            }
+            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: cancel, post: post)
             .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
         .onAppear {
             paragraphs = draft.markdown.components(separatedBy: "\n\n").map {
                 .text($0)
             }
+        }
+    }
+    
+    func cancel() {
+        isShowing = false
+    }
+    
+    func post() {
+        if let account = selectedAccount {
+            try! blogEngine.post(draft, toAccount: account)
+            isShowing = false
         }
     }
 }
@@ -64,7 +71,9 @@ struct PreviewView_Previews: PreviewProvider {
             draft: Draft(
                 title: "This is a blog post!",
                 markdown: "This is a post I wrote.\n\nThis is another paragraph. You can type whatever you want, and it'll display it."
-            )
+            ),
+            isShowing: .constant(false),
+            blogEngine: engine
         )
         .frame(maxWidth: 1000)
         .environment(\.managedObjectContext, container.viewContext)
