@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State var selectedAccount: Account?
     
     @State var showingSheet: Bool = false
+    @State var showingAlert: Bool = false
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     @FetchRequest(fetchRequest: Account.canonicalOrder()) var fetchedResults: FetchedResults
@@ -31,7 +32,7 @@ struct SettingsView: View {
                     Image(systemName: "plus")
                 })
                 Button(action: {
-                    print("DELETE")
+                    showingAlert.toggle()
                 }, label: {
                     Image(systemName: "minus")
                 })
@@ -43,6 +44,19 @@ struct SettingsView: View {
         .sheet(isPresented: $showingSheet) {
             AddAccountForm(blogEngine: blogEngine, formObject: AccountEntryValidator(), showingSheet: $showingSheet)
                 .environment(\.managedObjectContext, managedObjectContext)
+        }
+        .alert(isPresented: $showingAlert) { () -> Alert in
+            Alert(
+                title: Text("Delete Account"),
+                message: Text("Are you sure you want to delete \(selectedAccount?.name ?? "")"),
+                primaryButton: Alert.Button.destructive(Text("Delete"), action: {
+                    if let account = selectedAccount {
+                        managedObjectContext.delete(account)
+                        try! managedObjectContext.save()
+                    }
+                }),
+                secondaryButton: Alert.Button.cancel()
+            )
         }
     }
 }

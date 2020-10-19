@@ -9,6 +9,16 @@ import SwiftUI
 import CoreData
 import BlogEngine
 
+extension List {
+    func ourListStyling() -> some View {
+        #if os(macOS)
+        return self.listStyle(SidebarListStyle())
+        #else
+        return self.listStyle(GroupedListStyle())
+        #endif
+    }
+}
+
 struct ListOfAccounts: View {
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     @FetchRequest(fetchRequest: Account.canonicalOrder()) var fetchedResults: FetchedResults
@@ -28,8 +38,7 @@ struct ListOfAccounts: View {
                 }
                 #endif
             }
-//            .listStyle(GroupedListStyle())
-            .listStyle(SidebarListStyle())
+            .ourListStyling()
             
             ProgressWithStatus(progress: progress)
         }
