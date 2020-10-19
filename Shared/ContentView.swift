@@ -52,7 +52,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingDraftSheet, content: {
             if let draft = draft {
-                PreviewView(draft: draft, isShowing: $showingDraftSheet, blogEngine: blogEngine)
+                PreviewView(draft: draft, blogEngine: blogEngine) {
+                    showingDraftSheet = false
+                }
             } else {
                 Text("Missing Draft")
             }

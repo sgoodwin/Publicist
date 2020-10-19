@@ -19,15 +19,15 @@ struct PreviewView: View {
     @State var draft: Draft
     @State var selectedAccount: Account?
     
-    @Binding var isShowing: Bool
-    
     let blogEngine: BlogEngine
+    
+    let close: () -> Void
     
     var body: some View {
         VStack {
             #if os(iOS)
             HStack {
-                Button("Cancel", action: cancel)
+                Button("Cancel", action: close)
                 
                 Spacer()
                 
@@ -41,7 +41,7 @@ struct PreviewView: View {
             
             FormFields(draft: $draft)
             
-            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: cancel, post: post)
+            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: close, post: post)
             .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
         .onAppear {
@@ -51,14 +51,10 @@ struct PreviewView: View {
         }
     }
     
-    func cancel() {
-        isShowing = false
-    }
-    
     func post() {
         if let account = selectedAccount {
             try! blogEngine.post(draft, toAccount: account)
-            isShowing = false
+            close()
         }
     }
 }
@@ -74,8 +70,8 @@ struct PreviewView_Previews: PreviewProvider {
                 title: "This is a blog post!",
                 markdown: "This is a post I wrote.\n\nThis is another paragraph. You can type whatever you want, and it'll display it."
             ),
-            isShowing: .constant(false),
-            blogEngine: engine
+            blogEngine: engine,
+            close: { print("close!") }
         )
         .frame(maxWidth: 1000)
         .environment(\.managedObjectContext, container.viewContext)

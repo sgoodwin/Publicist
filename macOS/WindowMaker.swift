@@ -16,7 +16,7 @@ class WindowMaker {
     func makeWindow(draft: Draft, engine: BlogEngine, context: NSManagedObjectContext) {
         let window = NSWindow(
             contentViewController: NSHostingController(rootView:
-                PreviewView(draft: draft, isShowing: .constant(true), blogEngine: engine).frame(minWidth: 500, minHeight: 500)
+                                                        PreviewView(draft: draft, blogEngine: engine, close: close).frame(minWidth: 500, minHeight: 500)
                                                         .environment(\.managedObjectContext, context)
             )
         )
@@ -33,5 +33,9 @@ class WindowMaker {
         controller.showWindow(nil)
 
         draftWindow = window
+    }
+    
+    func close() {
+        draftWindow?.close()
     }
 }
