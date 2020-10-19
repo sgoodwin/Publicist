@@ -19,7 +19,7 @@ struct ParagraphsView: View {
                         .lineLimit(nil)
                         .padding(4)
                 case .image(let value):
-                    SwiftUI.Image(nsImage: NSImage(data: value)!)
+                    SwiftUI.Image.from(data: value)
                         .scaledToFit()
                         .frame(maxHeight: 200)
                 }

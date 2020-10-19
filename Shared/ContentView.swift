@@ -20,7 +20,9 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
+    #if os(macOS)
     let windowMaker = WindowMaker()
+    #endif
     
     var body: some View {
         NavigationView {
