@@ -24,7 +24,7 @@ struct FormFields: View {
             }
             HStack {
                 Text("Tags:")
-                TextField("Tags", text: $tags)
+                TagsField(tags: $draft.tags)
             }
             #else
             HStack {
@@ -55,5 +55,17 @@ struct FormFields_Previews: PreviewProvider {
                 )
             )
         )
+    }
+}
+
+struct TagsField: View {
+    @Binding var tags: [TagObject]
+    
+    var body: some View {
+        TextField("Tags", text: Binding(get: {
+            tags.map({ $0.name }).joined(separator: ", ")
+        }, set: { newValue in
+            tags = newValue.components(separatedBy: ", ").map({ TagObject(name: $0) })
+        }))
     }
 }
