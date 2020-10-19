@@ -9,6 +9,16 @@ import SwiftUI
 import BlogEngine
 import WebKit
 
+extension Scene {
+    func styleTheWindows() -> some Scene {
+        #if os(macOS)
+        return self.windowStyle(HiddenTitleBarWindowStyle()).windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
+        #else
+        return self
+        #endif
+    }
+}
+
 @main
 struct PublicistApp: App {    
     var container: CustomPersistentContainer = {
@@ -36,18 +46,13 @@ struct PublicistApp: App {
                 .onAppear {
                     makeDemoAccountIfNeeded()
                     blogEngine.fetchPosts()
-                    
-//                    UITableView.appearance().separatorColor = .clear
                 }
         }
         .commands {
             SidebarCommands()
             ToolbarCommands()
         }
-//        #if os(macOS)
-//        .windowStyle(HiddenTitleBarWindowStyle())
-//        .windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
-//        #endif
+        .styleTheWindows()
         
         #if os(macOS)
         Settings {
