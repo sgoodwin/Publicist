@@ -49,6 +49,7 @@ struct PublicistApp: App {
                 }
         }
         .commands {
+            CommandGroup(replacing: .newItem, addition: {})
             SidebarCommands()
             ToolbarCommands()
         }
