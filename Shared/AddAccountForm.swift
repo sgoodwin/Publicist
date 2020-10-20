@@ -9,10 +9,17 @@ import SwiftUI
 import BlogEngine
 import CoreData
 
+extension String: Identifiable {
+    public var id: String {
+        return self
+    }
+}
+
 struct AddAccountForm: View {
     let blogEngine: BlogEngine
     @State var formObject: AccountEntryValidator
     @Binding var showingSheet: Bool
+    @State var error: String?
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
@@ -31,7 +38,6 @@ struct AddAccountForm: View {
             }
             .padding()
             HStack {
-                Text("\(formObject.type.rawValue)")
                 Button("Cancel") {
                     showingSheet.toggle()
                 }
@@ -42,6 +48,9 @@ struct AddAccountForm: View {
                 }
                 .keyboardShortcut(.defaultAction)
                 .disabled(!formObject.valid)
+                .alert(item: $error) { (anError) -> Alert in
+                    Alert(title: Text(anError))
+                }
             }
             .padding()
         }
@@ -58,8 +67,8 @@ struct AddAccountForm: View {
         let clientID = formObject.clientID
         
         blogEngine.checkAccountInfo(context: managedObjectContext, root: root, username: username, password: password, clientID: clientID, clientSecret: secret, apiKey: apiKey, type: type) { (error) in
-            if let error = error {
-                print("Error: \(error)")
+            if let _ = error {
+                self.error = "Failed to verify account info. Please double check."
             } else {
                 showingSheet = false
             }
