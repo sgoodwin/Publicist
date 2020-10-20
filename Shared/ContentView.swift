@@ -9,13 +9,18 @@ import SwiftUI
 import BlogEngine
 import CoreData
 
+extension Draft: Identifiable {
+    public var id: String {
+        slug
+    }
+}
+
 extension BlogEngine: ObservableObject {}
 
 struct ContentView: View {
     @ObservedObject var blogEngine: BlogEngine
     
     @State var selectedAccount: Account?
-    @State var showingDraftSheet: Bool = false
     @State var draft: Draft?
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
@@ -36,27 +41,11 @@ struct ContentView: View {
             }
         }
         .onOpenURL { (url) in
-            if let extractor = PostExtractor(url as NSURL) {
-                let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
-                let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
-                DispatchQueue.main.async {
-                    #if os(macOS)
-                    windowMaker.makeWindow(draft: draft, engine: blogEngine, context: managedObjectContext)
-                    #else
-                    print(draft.title)
-                    self.draft = draft
-                    showingDraftSheet = true
-                    #endif
-                }
-            }
+            extract(url)
         }
-        .sheet(isPresented: $showingDraftSheet, content: {
-            if let draft = draft {
-                PreviewView(draft: draft, blogEngine: blogEngine) {
-                    showingDraftSheet = false
-                }
-            } else {
-                Text("Missing Draft")
+        .sheet(item: $draft, content: { (aDraft) -> PreviewView in
+            PreviewView(draft: aDraft, blogEngine: blogEngine) {
+                self.draft = nil
             }
         })
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
@@ -84,6 +73,20 @@ extension ContentView {
     
     func refresh() {
         blogEngine.fetchPosts()
+    }
+    
+    func extract(_ url: URL) {
+        if let extractor = PostExtractor(url as NSURL) {
+            let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
+            let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
+            DispatchQueue.main.async {
+                #if os(macOS)
+                windowMaker.makeWindow(draft: draft, engine: blogEngine, context: managedObjectContext)
+                #else
+                self.draft = draft
+                #endif
+            }
+        }
     }
 }
 
