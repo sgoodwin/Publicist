@@ -23,6 +23,7 @@ extension Post {
 struct SearchablePostsList: View {
     @State var selectedPost: Post?
     @State var sharingPresented: Bool = false
+    @State var deletePromptShowing: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
     let fetchRequest: FetchRequest<Post>
@@ -38,6 +39,7 @@ struct SearchablePostsList: View {
     var body: some View {
         List(fetchRequest.wrappedValue, id: \.self, selection: $selectedPost) { post in
             PostCell(post: post)
+                .onDrag({ NSItemProvider(object: account.url(for: post)! as NSURL) })
                 .frame(minHeight: 80)
                 .contextMenu {
                     Button("View Article") {
@@ -52,7 +54,8 @@ struct SearchablePostsList: View {
                         share([account.url(for: post)!])
                     }
                     Button("Delete") {
-                        try! blogEngine.delete(post, fromAccount: account)
+                        selectedPost = post
+                        deletePromptShowing = true
                     }
                 }
         }
@@ -65,6 +68,19 @@ struct SearchablePostsList: View {
                 context: managedObjectContext
             )
         )
+        .alert(isPresented: $deletePromptShowing) { () -> Alert in
+            Alert(
+                title: Text("Delete Post"),
+                message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
+                primaryButton: Alert.Button.destructive(
+                    Text("Delete"),
+                    action: {
+                        try! blogEngine.delete(selectedPost!, fromAccount: account)
+                    }
+                ),
+                secondaryButton: Alert.Button.cancel()
+            )
+        }
     }
     
     func openURL(account: Account, post: Post) {
