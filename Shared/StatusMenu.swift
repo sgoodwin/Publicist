@@ -13,11 +13,16 @@ struct StatusMenu: View {
     
     var body: some View {
         Menu(draft.status.rawValue.capitalized) {
-            Button((draft.status == .draft ? " ✓" : "") + "Draft") {
+            Button((draft.status == .draft ? "✓ " : "") + "Draft") {
                 draft.status = .draft
             }
-            Button((draft.status == .published ? " ✓" : "") + "Published") {
+            Button((draft.status == .published ? "✓ " : "") + "Published") {
                 draft.status = .published
+            }
+            if draft.status == .scheduled {
+                Button("✓ Scheduled") {
+                    draft.status = .scheduled
+                }
             }
         }
         .menuStyle(AccountMenyStyle())

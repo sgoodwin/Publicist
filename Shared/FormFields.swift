@@ -25,6 +25,14 @@ struct FormFields: View {
             HStack {
                 Text("Tags:")
                 TagsField(tags: $draft.tags)
+                DatePicker("Published Date", selection: $draft.published_at)
+                    .onChange(of: draft.published_at) { (date) in
+                        if date > Date() {
+                            draft.status = .scheduled
+                        } else {
+                            draft.status = .published
+                        }
+                    }
             }
             #else
             HStack {

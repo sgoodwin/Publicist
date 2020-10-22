@@ -8,6 +8,21 @@
 import SwiftUI
 import BlogEngine
 
+struct StatusLabel: View {
+    let status: PostStatus
+    
+    var body: some View {
+        Text(status.displayName)
+            .font(.subheadline)
+            .padding(6)
+            .foregroundColor(.accentColor)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.accentColor)
+            )
+    }
+}
+
 struct PostCell: View {
     let post: Post
     
@@ -25,6 +40,13 @@ struct PostCell: View {
                     .font(.headline)
                 Text("\(post.publishedDate!, formatter: Self.dateFormat)")
                     .font(.subheadline)
+                Spacer()
+                if post.postStatus == .draft {
+                    StatusLabel(status: post.postStatus)
+                }
+                if post.postStatus == .scheduled {
+                    StatusLabel(status: post.postStatus)
+                }
             }
             Text(verbatim: post.excerpt ?? "-")
                 .font(.body)
