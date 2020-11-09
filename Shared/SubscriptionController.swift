@@ -32,6 +32,7 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
             let validator = ReceiptValidator(url: url)
             let result = try! validator.validate()
             self.subscriptionValid = result == .success
+            print("Subscription is valid \(self.subscriptionValid)")
         }
     }
     

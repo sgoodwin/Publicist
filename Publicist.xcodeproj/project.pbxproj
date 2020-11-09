@@ -53,6 +53,10 @@
 		9BEC74B02559361700D9326B /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* SubscriptionController.swift */; };
 		9BEC74B6255937CB00D9326B /* SubscriptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74B5255937CB00D9326B /* SubscriptionsViewControllerTests.swift */; };
 		9BEC74D8255945B900D9326B /* RSAppMovementMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */; };
+		9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E1255955E700D9326B /* StoreKit.framework */; };
+		9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E72559560100D9326B /* CloudKit.framework */; };
+		9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74ED2559565800D9326B /* Configuration.storekit */; };
+		9BEC74F4255957BA00D9326B /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */; };
 		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
@@ -115,6 +119,10 @@
 		9BEC74AA2559361200D9326B /* SubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
 		9BEC74B5255937CB00D9326B /* SubscriptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAppMovementMonitor.swift; sourceTree = "<group>"; };
+		9BEC74E1255955E700D9326B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9BEC74E72559560100D9326B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		9BEC74ED2559565800D9326B /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		9BF4E8B22518EA7B00226C58 /* FormFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFields.swift; sourceTree = "<group>"; };
 		9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphsView.swift; sourceTree = "<group>"; };
 		9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenu.swift; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */,
+				9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */,
 				9BEC74A52559357A00D9326B /* AppReceiptValidator in Frameworks */,
 				9B75F48924B73934009B8792 /* BlogEngine in Frameworks */,
 			);
@@ -159,6 +169,8 @@
 		9B75F48A24B7394C009B8792 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BEC74E72559560100D9326B /* CloudKit.framework */,
+				9BEC74E1255955E700D9326B /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,6 +244,8 @@
 				9B8416A224A349BE0054D12D /* macOS.entitlements */,
 				9B48BF0D2518A1900099701B /* WindowMaker.swift */,
 				9B48BF1A2518A7B30099701B /* SharingPIcker.swift */,
+				9BEC74ED2559565800D9326B /* Configuration.storekit */,
+				9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -400,6 +414,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */,
+				9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */,
+				9BEC74F4255957BA00D9326B /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +695,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
@@ -705,7 +721,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;

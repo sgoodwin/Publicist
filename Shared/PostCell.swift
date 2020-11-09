@@ -44,13 +44,13 @@ struct PostCell: View {
                 Spacer()
                 
                 VStack {
-                if post.postStatus == .draft {
-                    StatusLabel(status: post.postStatus)
+                    if post.postStatus == .draft {
+                        StatusLabel(status: post.postStatus)
+                    }
+                    if post.postStatus == .scheduled {
+                        StatusLabel(status: post.postStatus)
+                    }
                 }
-                if post.postStatus == .scheduled {
-                    StatusLabel(status: post.postStatus)
-                }
-                }.background(Color.red)
             }
             Text(verbatim: post.excerpt ?? "-")
                 .font(.body)

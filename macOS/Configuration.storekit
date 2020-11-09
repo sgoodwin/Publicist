@@ -1,0 +1,49 @@
+{
+  "products" : [
+
+  ],
+  "settings" : {
+    "_timeRate" : 6
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "176F32CD",
+      "localizations" : [
+
+      ],
+      "name" : "Access",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "20",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "4F1DDB7C",
+          "introductoryOffer" : {
+            "internalID" : "EB0BFF8F",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "1 year auto-renewing subscription",
+              "displayName" : "Yearly Access",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.roundwallsoftware.Publisher.Yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Yearly",
+          "subscriptionGroupID" : "176F32CD",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}
