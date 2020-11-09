@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "AppReceiptValidator",
+        "repositoryURL": "git@github.com:IdeasOnCanvas/AppReceiptValidator.git",
+        "state": {
+          "branch": "experiment/openSSLXCFramework",
+          "revision": "aa74238c4b79e37caa950097a59725d51fca9107",
+          "version": null
+        }
+      },
+      {
         "package": "BlogEngine",
         "repositoryURL": "https://github.com/sgoodwin/BlogEngine.git",
         "state": {

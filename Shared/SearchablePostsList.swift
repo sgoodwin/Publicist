@@ -29,11 +29,13 @@ struct SearchablePostsList: View {
     let fetchRequest: FetchRequest<Post>
     let account: Account
     let blogEngine: BlogEngine
+    let subController: SubscriptionController
     
-    init(account: Account, blogEngine: BlogEngine) {
+    init(account: Account, blogEngine: BlogEngine, subController: SubscriptionController) {
         self.account = account
         self.fetchRequest = Post.allFrom(account)
         self.blogEngine = blogEngine
+        self.subController = subController
     }
     
     var body: some View {
@@ -65,7 +67,8 @@ struct SearchablePostsList: View {
                 selectedAccount: account,
                 accounts: try! managedObjectContext.fetch(Account.canonicalOrder()),
                 blogEngine: blogEngine,
-                context: managedObjectContext
+                context: managedObjectContext,
+                subController: subController
             )
         )
         .alert(isPresented: $deletePromptShowing) { () -> Alert in
@@ -97,8 +100,14 @@ struct DropReceiver: DropDelegate {
     let accounts: [Account]
     let blogEngine: BlogEngine
     let context: NSManagedObjectContext
+    let subController: SubscriptionController
     
     func performDrop(info: DropInfo) -> Bool {
+        if !subController.subscriptionValid {
+            print("Making new posts is not allowed!")
+            return false
+        }
+        
         let providers = info.itemProviders(for: [.fileURL])
         for provider in providers {
             provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { item, error in

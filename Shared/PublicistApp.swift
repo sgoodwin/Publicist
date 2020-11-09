@@ -37,11 +37,14 @@ struct PublicistApp: App {
     
     #if os(macOS)
     let windowMaker = WindowMaker()
+    var monitor = RSAppMovementMonitor()
     #endif
+    
+    let subController = SubscriptionController()
     
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView(blogEngine: blogEngine)
+            ContentView(blogEngine: blogEngine, subscriptionController: subController)
                 .environment(\.managedObjectContext, container.viewContext)
                 .onAppear {
                     makeDemoAccountIfNeeded()

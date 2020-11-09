@@ -22,6 +22,9 @@ struct ContentView: View {
     
     @State var selectedAccount: Account?
     @State var draft: Draft?
+    @State var error: String?
+    
+    let subscriptionController: SubscriptionController
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
@@ -34,19 +37,31 @@ struct ContentView: View {
             ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount, blogEngine: blogEngine)
                 .frame(minWidth: 200)
             
-            if let selectedAccount = selectedAccount {
-                SearchablePostsList(account: selectedAccount, blogEngine: blogEngine)
-            } else {
-                Text("Select an account")
+            VStack {
+                if let selectedAccount = selectedAccount {
+                    SearchablePostsList(account: selectedAccount, blogEngine: blogEngine, subController: subscriptionController)
+                } else {
+                    Spacer()
+                    Text("Select an account")
+                    Spacer()
+                }
+                SubscriptionStatusView(controller: subscriptionController)
             }
         }
         .onOpenURL { (url) in
-            extract(url)
+            if subscriptionController.subscriptionValid {
+                extract(url)
+            } else {
+                error = "You do not have a valid subscription!"
+            }
         }
         .sheet(item: $draft, content: { (aDraft) -> PreviewView in
             PreviewView(draft: aDraft, blogEngine: blogEngine) {
                 self.draft = nil
             }
+        })
+        .alert(item: $error, content: { error in
+            Alert(title: Text(error))
         })
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .toolbar {
@@ -96,7 +111,7 @@ struct ContentView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        ContentView(blogEngine: engine)
+        ContentView(blogEngine: engine, subscriptionController: SubscriptionController())
             .environment(\.managedObjectContext, container.viewContext)
     }
 }

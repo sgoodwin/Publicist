@@ -2,33 +2,48 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "ios",
-        "reference" : "systemPurpleColor"
+        "color-space" : "display-p3",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.765",
+          "green" : "0.161",
+          "red" : "0.290"
+        }
       },
       "idiom" : "universal"
     },
     {
       "color" : {
-        "platform" : "ios",
-        "reference" : "systemPurpleColor"
+        "color-space" : "display-p3",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.765",
+          "green" : "0.161",
+          "red" : "0.290"
+        }
       },
       "idiom" : "iphone"
     },
     {
       "color" : {
-        "platform" : "ios",
-        "reference" : "systemPurpleColor"
+        "color-space" : "display-p3",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0.765",
+          "green" : "0.161",
+          "red" : "0.290"
+        }
       },
       "idiom" : "ipad"
     },
     {
       "color" : {
-        "color-space" : "extended-srgb",
+        "color-space" : "display-p3",
         "components" : {
           "alpha" : "1.000",
-          "blue" : "0.871",
-          "green" : "0.322",
-          "red" : "0.686"
+          "blue" : "0.765",
+          "green" : "0.161",
+          "red" : "0.290"
         }
       },
       "idiom" : "mac"
