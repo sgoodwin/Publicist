@@ -12,7 +12,7 @@ import WebKit
 extension Scene {
     func styleTheWindows() -> some Scene {
         #if os(macOS)
-        return self.windowStyle(HiddenTitleBarWindowStyle()).windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
+        return self.windowStyle(TitleBarWindowStyle()).windowToolbarStyle(UnifiedWindowToolbarStyle(showsTitle: false))
         #else
         return self
         #endif

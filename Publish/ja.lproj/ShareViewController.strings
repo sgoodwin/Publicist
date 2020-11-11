@@ -1,0 +1,18 @@
+/* Class = "NSButtonCell"; title = "Post"; ObjectID = "PDZ-JE-dYc"; */
+"PDZ-JE-dYc.title" = "投稿する";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "rkX-w5-ccU"; */
+"rkX-w5-ccU.title" = "キャンセル";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "Uhk-Jq-7nS"; */
+"Uhk-Jq-7nS.title" = "NA";
+
+/* Class = "NSButtonCell"; title = "Launch Publicist to Subscribe"; ObjectID = "uQR-do-zin"; */
+"uQR-do-zin.title" = " 登録するためにPublicistを起動する\n";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "V0H-xf-XWQ"; */
+"V0H-xf-XWQ.title" = "NA";
+
+/* Class = "NSTextFieldCell"; title = "Publicist requires an active subscription to use this extension."; ObjectID = "XZL-hE-wUb"; */
+"XZL-hE-wUb.title" = "この機能を使用するには登録が必要です\n";
+

@@ -10,66 +10,94 @@ import BlogEngine
 
 struct StatusLabel: View {
     let status: PostStatus
+    let publishedDate: Date?
     
-    var body: some View {
-        Text(status.displayName)
-            .font(.subheadline)
-            .padding(6)
-            .foregroundColor(.accentColor)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.accentColor)
-            )
-    }
-}
-
-struct PostCell: View {
-    let post: Post
-    
-    static let dateFormat: DateFormatter = {
+    let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateStyle = .short
         formatter.timeStyle = .none
+        formatter.locale = Locale.current
         return formatter
     }()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(verbatim: post.title ?? "Untitled")
-                    .font(.headline)
-                Text("\(post.publishedDate!, formatter: Self.dateFormat)")
-                    .font(.subheadline)
-                
-                Spacer()
-                
-                VStack {
-                    if post.postStatus == .draft {
-                        StatusLabel(status: post.postStatus)
-                    }
-                    if post.postStatus == .scheduled {
-                        StatusLabel(status: post.postStatus)
-                    }
-                }
+        if status == .draft {
+            VStack {
+                Image(systemName: "doc.badge.ellipsis")
+                    .imageScale(.large)
+                Text("Draft")
             }
-            Text(verbatim: post.excerpt ?? "-")
-                .font(.body)
-                .lineLimit(nil)
-        }.padding()
+            .padding()
+        } else if status == .scheduled {
+            VStack {
+                Image(systemName: "calendar.badge.clock")
+                    .imageScale(.large)
+                Text(publishedDate!, formatter: dateFormat)
+            }
+            .padding()
+        } else {
+            Text(publishedDate!, formatter: dateFormat)
+        }
     }
 }
 
-struct PostCell_Previews: PreviewProvider {
-    static var post: Post {
-        let post = Post(context: container.viewContext)
-        post.title = "This is a blog post"
-        post.publishedDate = Date()
-        post.excerpt = "This is the excerpt of the text. It shouldn't be suuuper long."
-        
-        return post
-    }
+protocol PostLike {
+    var title: String? { get }
+    var postStatus: PostStatus { get }
+    var excerpt: String? { get }
+    var publishedDate: Date? { get }
+}
+
+extension Post: PostLike {}
+
+struct PostCell: View {
+    let post: PostLike
     
+    let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.locale = Locale.current
+        return formatter
+    }()
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(verbatim: post.title ?? "Untitled")
+                    .font(.headline)
+                Text(verbatim: post.excerpt ?? "-")
+                    .font(.body)
+                    .lineLimit(nil)
+            }
+            
+            Spacer()
+            
+            StatusLabel(
+                status: post.postStatus,
+                publishedDate: post.publishedDate
+            )
+        }
+         .padding()
+    }
+}
+
+struct PostStruct: PostLike {
+    var title: String? = "This is the title"
+    
+    var postStatus: PostStatus
+    
+    var excerpt: String? = "Thisi s an exerpt. It's the first paragraph in the thing."
+    
+    var publishedDate: Date? = Date()
+}
+
+struct PostCell_Previews: PreviewProvider {
     static var previews: some View {
-        PostCell(post: post)
+        Group {
+            PostCell(post: PostStruct(postStatus: .draft))
+            PostCell(post: PostStruct(postStatus: .scheduled))
+            PostCell(post: PostStruct(postStatus: .published))
+        }
     }
 }

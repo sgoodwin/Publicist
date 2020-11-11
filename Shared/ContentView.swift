@@ -21,6 +21,8 @@ struct ContentView: View {
     @ObservedObject var blogEngine: BlogEngine
     
     @State var selectedAccount: Account?
+    @State var statusFilter: PostStatus?
+    
     @State var draft: Draft?
     @State var error: String?
     
@@ -39,7 +41,7 @@ struct ContentView: View {
             
             VStack {
                 if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount, blogEngine: blogEngine, subController: subscriptionController)
+                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine, subController: subscriptionController)
                 } else {
                     Spacer()
                     Text("Select an account")
@@ -49,6 +51,9 @@ struct ContentView: View {
             }
         }
         .onOpenURL { (url) in
+            if url.scheme == "publicist" {
+                return
+            }
             if subscriptionController.subscriptionValid {
                 extract(url)
             } else {
@@ -74,6 +79,24 @@ struct ContentView: View {
                 Button(action: refresh, label: {
                     Image(systemName: "arrow.clockwise")
                 })
+            }
+            ToolbarItem(placement: .principal) {
+                if selectedAccount != nil {
+                    Menu(statusFilter?.rawValue.capitalized ?? "Status Filter") {
+                        Button("All", action: {
+                            statusFilter = nil
+                        })
+                        Button("Draft", action: {
+                            statusFilter = .draft
+                        })
+                        Button("Published", action: {
+                            statusFilter = .published
+                        })
+                        Button("Scheduled", action: {
+                            statusFilter = .scheduled
+                        })
+                    }
+                }
             }
         }
     }

@@ -12,10 +12,14 @@ import UniformTypeIdentifiers
 import CoreData
 
 extension Post {
-    static func allFrom(_ account: Account) -> FetchRequest<Post> {
+    static func allFrom(_ account: Account, status: PostStatus? = nil) -> FetchRequest<Post> {
         let request = Self.fetchRequest() as NSFetchRequest<Post>
-        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Post.createdDate, ascending: false)]
-        request.predicate = NSPredicate(format: "account = %@", account)
+        request.sortDescriptors = [ NSSortDescriptor(keyPath: \Post.publishedDate, ascending: false)]
+        if let status = status {
+            request.predicate = NSPredicate(format: "account = %@ AND status = %@", account, status.rawValue)
+        } else {
+            request.predicate = NSPredicate(format: "account = %@", account)
+        }
         return FetchRequest(fetchRequest: request)
     }
 }
@@ -26,16 +30,16 @@ struct SearchablePostsList: View {
     @State var deletePromptShowing: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     
-    let fetchRequest: FetchRequest<Post>
+    var fetchRequest: FetchRequest<Post>
     let account: Account
     let blogEngine: BlogEngine
     let subController: SubscriptionController
     
-    init(account: Account, blogEngine: BlogEngine, subController: SubscriptionController) {
+    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine, subController: SubscriptionController) {
         self.account = account
-        self.fetchRequest = Post.allFrom(account)
         self.blogEngine = blogEngine
         self.subController = subController
+        self.fetchRequest = Post.allFrom(account, status: statusFilter)
     }
     
     var body: some View {

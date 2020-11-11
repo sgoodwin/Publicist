@@ -8,11 +8,33 @@
 import StoreKit
 import SwiftUI
 
+struct Validity: Codable {
+    let valid: Bool
+    let arbitrary: String
+}
+
 class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     var request: SKRequest?
     var product: SKProduct?
     
-    @Published var subscriptionValid: Bool = true
+    @Published var subscriptionValid: Bool = true {
+        didSet {
+            if subscriptionValid {
+                let manager = FileManager.default
+                let url = manager.containerURL(forSecurityApplicationGroupIdentifier: "SYSB7DM9AH.Publisher")!.appendingPathComponent("validity")
+                if subscriptionValid {
+                    let validity = Validity(valid: true, arbitrary: "pooppooppoop")
+                    let encoder = PropertyListEncoder()
+                    encoder.outputFormat = .binary
+                    
+                    let encoded = try! encoder.encode(validity)
+                    try! encoded.write(to: url)
+                } else {
+                    try? manager.removeItem(at: url)
+                }
+            }
+        }
+    }
     
     override init() {        
         super.init()
