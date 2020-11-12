@@ -29,16 +29,16 @@ struct SearchablePostsList: View {
     @State var sharingPresented: Bool = false
     @State var deletePromptShowing: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
+    @EnvironmentObject var subController: SubscriptionController
     
     var fetchRequest: FetchRequest<Post>
     let account: Account
     let blogEngine: BlogEngine
-    let subController: SubscriptionController
+    @State var error: DropError?
     
-    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine, subController: SubscriptionController) {
+    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine) {
         self.account = account
         self.blogEngine = blogEngine
-        self.subController = subController
         self.fetchRequest = Post.allFrom(account, status: statusFilter)
     }
     
@@ -64,6 +64,19 @@ struct SearchablePostsList: View {
                         deletePromptShowing = true
                     }
                 }
+                .alert(isPresented: $deletePromptShowing) { () -> Alert in
+                    Alert(
+                        title: Text("Delete Post"),
+                        message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
+                        primaryButton: Alert.Button.destructive(
+                            Text("Delete"),
+                            action: {
+                                try! blogEngine.delete(selectedPost!, fromAccount: account)
+                            }
+                        ),
+                        secondaryButton: Alert.Button.cancel()
+                    )
+                }
         }
         .onDrop(
             of: [UTType.fileURL],
@@ -72,22 +85,12 @@ struct SearchablePostsList: View {
                 accounts: try! managedObjectContext.fetch(Account.canonicalOrder()),
                 blogEngine: blogEngine,
                 context: managedObjectContext,
-                subController: subController
+                subController: subController, errorBlock: { error = $0 }
             )
         )
-        .alert(isPresented: $deletePromptShowing) { () -> Alert in
-            Alert(
-                title: Text("Delete Post"),
-                message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
-                primaryButton: Alert.Button.destructive(
-                    Text("Delete"),
-                    action: {
-                        try! blogEngine.delete(selectedPost!, fromAccount: account)
-                    }
-                ),
-                secondaryButton: Alert.Button.cancel()
-            )
-        }
+        .alert(item: $error, content: { error in
+            Alert(title: Text("You'll need to subscribe to unlock posting articles."))
+        })
     }
     
     func openURL(account: Account, post: Post) {
@@ -99,16 +102,29 @@ struct SearchablePostsList: View {
     }
 }
 
+enum DropError: Error, Identifiable {
+    var id: String {
+        switch self {
+        case .invalidSubscription:
+            return "invalidSubscription"
+        }
+    }
+    
+    case invalidSubscription
+}
+
 struct DropReceiver: DropDelegate {
     let selectedAccount: Account
     let accounts: [Account]
     let blogEngine: BlogEngine
     let context: NSManagedObjectContext
     let subController: SubscriptionController
+    let errorBlock: (DropError) -> ()
     
     func performDrop(info: DropInfo) -> Bool {
         if !subController.subscriptionValid {
             print("Making new posts is not allowed!")
+            errorBlock(DropError.invalidSubscription)
             return false
         }
         

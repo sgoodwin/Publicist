@@ -32,9 +32,11 @@ struct ReceiptValidator {
         }
         
         let data = try Data(contentsOf: url)
+        
         let validator = AppReceiptValidator()
         let parameters = AppReceiptValidator.Parameters.default.with {
             $0.receiptOrigin = .data(data)
+            $0.signatureValidation = .skip
         }
         let validation = validator.validateReceipt(parameters: parameters)
         switch validation {
@@ -57,7 +59,7 @@ struct ReceiptValidator {
             }
             
             return .success
-        case .error:
+        case .error(let error, _, _):
             return .invalid
         }
     }

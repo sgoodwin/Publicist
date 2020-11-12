@@ -26,9 +26,8 @@ struct ContentView: View {
     @State var draft: Draft?
     @State var error: String?
     
-    let subscriptionController: SubscriptionController
-    
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
+    @EnvironmentObject var subscriptionController: SubscriptionController
     
     #if os(macOS)
     let windowMaker = WindowMaker()
@@ -41,13 +40,13 @@ struct ContentView: View {
             
             VStack {
                 if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine, subController: subscriptionController)
+                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine)
                 } else {
                     Spacer()
                     Text("Select an account")
                     Spacer()
                 }
-                SubscriptionStatusView(controller: subscriptionController)
+                SubscriptionStatusView()
             }
         }
         .onOpenURL { (url) in
@@ -134,7 +133,7 @@ struct ContentView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        ContentView(blogEngine: engine, subscriptionController: SubscriptionController())
+        ContentView(blogEngine: engine)
             .environment(\.managedObjectContext, container.viewContext)
     }
 }

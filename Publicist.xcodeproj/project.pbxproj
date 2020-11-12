@@ -35,6 +35,7 @@
 		9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B84169224A349BE0054D12D /* Assets.xcassets */; };
 		9B8416CE24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
 		9B8416CF24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
+		9B8C2F30255D361300912923 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8C2F2F255D361300912923 /* BlogEngine */; };
 		9BA172F7253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
 		9BA172F8253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
 		9BB2E086255BE0C2004E7367 /* Publish.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BB2E079255BE0C2004E7367 /* Publish.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -63,7 +64,7 @@
 		9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E1255955E700D9326B /* StoreKit.framework */; };
 		9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E72559560100D9326B /* CloudKit.framework */; };
 		9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74ED2559565800D9326B /* Configuration.storekit */; };
-		9BEC74F4255957BA00D9326B /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */; };
+		9BEC74F4255957BA00D9326B /* StoreKitFakeCert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */; };
 		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
@@ -159,7 +160,7 @@
 		9BEC74E1255955E700D9326B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9BEC74E72559560100D9326B /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		9BEC74ED2559565800D9326B /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
-		9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitFakeCert.cer; sourceTree = "<group>"; };
 		9BF4E8B22518EA7B00226C58 /* FormFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFields.swift; sourceTree = "<group>"; };
 		9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphsView.swift; sourceTree = "<group>"; };
 		9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenu.swift; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8C2F30255D361300912923 /* BlogEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +294,7 @@
 				9B48BF0D2518A1900099701B /* WindowMaker.swift */,
 				9B48BF1A2518A7B30099701B /* SharingPIcker.swift */,
 				9BEC74ED2559565800D9326B /* Configuration.storekit */,
-				9BEC74F3255957BA00D9326B /* StoreKitTestCertificate.cer */,
+				9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -427,6 +429,9 @@
 				9B8416B424A349BF0054D12D /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
+			packageProductDependencies = (
+				9B8C2F2F255D361300912923 /* BlogEngine */,
+			);
 			productName = "Tests macOS";
 			productReference = 9B8416B224A349BF0054D12D /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -522,7 +527,7 @@
 			files = (
 				9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */,
 				9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */,
-				9BEC74F4255957BA00D9326B /* StoreKitTestCertificate.cer in Resources */,
+				9BEC74F4255957BA00D9326B /* StoreKitFakeCert.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1132,6 +1137,11 @@
 			productName = BlogEngine;
 		};
 		9B75F48B24B7394C009B8792 /* BlogEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
+			productName = BlogEngine;
+		};
+		9B8C2F2F255D361300912923 /* BlogEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
 			productName = BlogEngine;

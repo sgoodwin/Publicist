@@ -17,22 +17,21 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
     var request: SKRequest?
     var product: SKProduct?
     
-    @Published var subscriptionValid: Bool = true {
-        didSet {
-            if subscriptionValid {
-                let manager = FileManager.default
-                let url = manager.containerURL(forSecurityApplicationGroupIdentifier: "SYSB7DM9AH.Publisher")!.appendingPathComponent("validity")
-                if subscriptionValid {
-                    let validity = Validity(valid: true, arbitrary: "pooppooppoop")
-                    let encoder = PropertyListEncoder()
-                    encoder.outputFormat = .binary
-                    
-                    let encoded = try! encoder.encode(validity)
-                    try! encoded.write(to: url)
-                } else {
-                    try? manager.removeItem(at: url)
-                }
-            }
+    @Published var subscriptionValid: Bool = true
+    
+    private func recordValidIfNecessary() {
+        assert(Thread.isMainThread)
+        let manager = FileManager.default
+        let url = manager.containerURL(forSecurityApplicationGroupIdentifier: "SYSB7DM9AH.Publisher")!.appendingPathComponent("validity")
+        if subscriptionValid {
+            let validity = Validity(valid: true, arbitrary: "pooppooppoop")
+            let encoder = PropertyListEncoder()
+            encoder.outputFormat = .binary
+            
+            let encoded = try! encoder.encode(validity)
+            try! encoded.write(to: url)
+        } else {
+            try? manager.removeItem(at: url)
         }
     }
     
@@ -51,10 +50,12 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
     
     func validateSubscription() {
         if let url = Bundle.main.appStoreReceiptURL {
+            print("Checking url \(url)")
             let validator = ReceiptValidator(url: url)
             let result = try! validator.validate()
             self.subscriptionValid = result == .success
-            print("Subscription is valid \(self.subscriptionValid)")
+            recordValidIfNecessary()
+            print("Subscription \(self) is valid after checking receipt \(self.subscriptionValid)")
         }
     }
     
@@ -106,8 +107,20 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            if transaction.transactionState == .purchased {
-                subscriptionValid = true
+            DispatchQueue.main.async {
+                if transaction.transactionState == .purchased {
+                    self.subscriptionValid = true
+                    self.recordValidIfNecessary()
+                    print("Subscription \(self) is valid after transaction: \(self.subscriptionValid)")
+                    print("Subscription thread: \(Thread.isMainThread)")
+                    queue.finishTransaction(transaction)
+                }
+                if transaction.transactionState == .failed {
+                    self.subscriptionValid = false
+                    self.recordValidIfNecessary()
+                    print("Subscription \(self) is valid after transaction: \(self.subscriptionValid)")
+                    queue.finishTransaction(transaction)
+                }
             }
         }
     }

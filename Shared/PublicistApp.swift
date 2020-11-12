@@ -35,17 +35,18 @@ struct PublicistApp: App {
         return BlogEngine(context: container.viewContext)
     }
     
+    let subController = SubscriptionController()
+    
     #if os(macOS)
     let windowMaker = WindowMaker()
     var monitor = RSAppMovementMonitor()
     #endif
     
-    let subController = SubscriptionController()
-    
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView(blogEngine: blogEngine, subscriptionController: subController)
+            ContentView(blogEngine: blogEngine)
                 .environment(\.managedObjectContext, container.viewContext)
+                .environmentObject(subController)
                 .onAppear {
                     makeDemoAccountIfNeeded()
                     blogEngine.fetchPosts()

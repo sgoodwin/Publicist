@@ -27,7 +27,7 @@ struct Banner: View {
 }
 
 struct SubscriptionStatusView: View {
-    let controller: SubscriptionController
+    @EnvironmentObject var controller: SubscriptionController
     
     var body: some View {
         if controller.subscriptionValid {
@@ -59,7 +59,7 @@ struct SubscriptionStatusView: View {
 struct SubscriptionStatusView_Preview: PreviewProvider {
     static var previews: some View {
         Group {
-            SubscriptionStatusView(controller: SubscriptionController())
+            SubscriptionStatusView()
         }
     }
 }
