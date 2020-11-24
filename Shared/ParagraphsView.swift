@@ -6,34 +6,49 @@
 //
 
 import SwiftUI
+import BlogEngine
 
 struct ParagraphsView: View {
+    struct MyDropDelegate: DropDelegate {
+        func performDrop(info: DropInfo) -> Bool {
+            print(info)
+            return true
+        }
+    }
+    
     @Binding var paragraphs: [ParagraphItem]
+    @State var selectedParagraph: ParagraphItem?
     
     var body: some View {
-        List {
+        List(selection: $selectedParagraph) {
             ForEach(paragraphs, id: \.self) { paragraph in
                 switch paragraph {
                 case .text(let value):
-                    Text(value)
+                    Text(verbatim: value)
                         .lineLimit(nil)
                         .padding(4)
-                case .image(let value):
-                    SwiftUI.Image.from(data: value)
-                        .scaledToFit()
-                        .frame(maxHeight: 200)
+                case .image(let line, let imageStruct):
+                    VStack(alignment: .center) {
+                        Text(verbatim: line)
+                        SwiftUI.Image.from(data: imageStruct.data)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxHeight: 200)
+                    }
                 }
             }
-            .onInsert(of: [.image, .jpeg, .png, .fileURL], perform: insert)
+            .onInsert(of: [.image, .jpeg, .png], perform: insert)
+            .onDrop(of: [.image, .jpeg, .png], delegate: MyDropDelegate())
         }
         .listStyle(PlainListStyle())
     }
     
     func insert(index: Int, providers: [NSItemProvider]) {
         for provider in providers {
-            provider.loadDataRepresentation(forTypeIdentifier: "public.image") { (data, error) in
-                if let data = data {
-                    paragraphs.insert(.image(data), at: index)
+            provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
+                if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
+                    let item = ParagraphItem.image("![](\(fileURL)", ImageStruct(data: data, url: fileURL))
+                    paragraphs.insert(item, at: index)
                 }
             }
         }

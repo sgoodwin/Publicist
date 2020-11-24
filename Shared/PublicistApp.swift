@@ -35,7 +35,7 @@ struct PublicistApp: App {
         return BlogEngine(context: container.viewContext)
     }
     
-    let subController = SubscriptionController()
+    let subController = PurchaseController()
     
     #if os(macOS)
     let windowMaker = WindowMaker()

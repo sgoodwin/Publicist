@@ -10,7 +10,7 @@ import SwiftUI
 struct Banner: View {
     var body: some View {
         HStack(spacing: 0) {
-            Text("Subscribe to unlock all features")
+            Text("Unlock all features")
                 .background(
                     Color(.sRGB, red: 0.290, green: 0.161, blue: 0.765, opacity: 1.0)
                         .frame(height: 40)
@@ -27,21 +27,21 @@ struct Banner: View {
 }
 
 struct SubscriptionStatusView: View {
-    @EnvironmentObject var controller: SubscriptionController
+    @EnvironmentObject var controller: PurchaseController
     
     var body: some View {
         if controller.subscriptionValid {
             EmptyView()
         } else {
             HStack {
-                Button(action: subscribe, label: {
+                Button(action: unlock, label: {
                     Banner()
                 })
                 .buttonStyle(BorderlessButtonStyle())
                 
                 Spacer()
                 
-                Button("Already a subscriber?\nRestore Subscription") {
+                Button("Restore Purchase") {
                     controller.refresh()
                 }
                 .buttonStyle(BorderlessButtonStyle())
@@ -51,8 +51,8 @@ struct SubscriptionStatusView: View {
         }
     }
     
-    func subscribe() {
-        controller.subscribe()
+    func unlock() {
+        controller.unlock()
     }
 }
 

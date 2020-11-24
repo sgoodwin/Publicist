@@ -57,8 +57,8 @@
 		9BEC74942559345500D9326B /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74922559345500D9326B /* ReceiptValidator.swift */; };
 		9BEC749A2559346400D9326B /* ReceiptValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */; };
 		9BEC74A52559357A00D9326B /* AppReceiptValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 9BEC74A42559357A00D9326B /* AppReceiptValidator */; };
-		9BEC74AB2559361200D9326B /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* SubscriptionController.swift */; };
-		9BEC74B02559361700D9326B /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* SubscriptionController.swift */; };
+		9BEC74AB2559361200D9326B /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* PurchaseController.swift */; };
+		9BEC74B02559361700D9326B /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* PurchaseController.swift */; };
 		9BEC74B6255937CB00D9326B /* SubscriptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74B5255937CB00D9326B /* SubscriptionsViewControllerTests.swift */; };
 		9BEC74D8255945B900D9326B /* RSAppMovementMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */; };
 		9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E1255955E700D9326B /* StoreKit.framework */; };
@@ -154,7 +154,7 @@
 		9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatusView.swift; sourceTree = "<group>"; };
 		9BEC74922559345500D9326B /* ReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptValidator.swift; sourceTree = "<group>"; };
 		9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptValidatorTests.swift; sourceTree = "<group>"; };
-		9BEC74AA2559361200D9326B /* SubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
+		9BEC74AA2559361200D9326B /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
 		9BEC74B5255937CB00D9326B /* SubscriptionsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSAppMovementMonitor.swift; sourceTree = "<group>"; };
 		9BEC74E1255955E700D9326B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -260,7 +260,7 @@
 				9BC5D5852521FD910072DBC2 /* DraftButtons.swift */,
 				9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */,
 				9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */,
-				9BEC74AA2559361200D9326B /* SubscriptionController.swift */,
+				9BEC74AA2559361200D9326B /* PurchaseController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -447,6 +447,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9B60244E2563C1C100E12831 /* PBXTargetDependency */,
 			);
 			name = Publish;
 			packageProductDependencies = (
@@ -604,7 +605,7 @@
 				9B8416BC24A349BF0054D12D /* ContentView.swift in Sources */,
 				9BF4E8EE2519015500226C58 /* StatusMenu.swift in Sources */,
 				9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
-				9BEC74B02559361700D9326B /* SubscriptionController.swift in Sources */,
+				9BEC74B02559361700D9326B /* PurchaseController.swift in Sources */,
 				9B8416BA24A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9BA172F8253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */,
 				9B586D3E24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
@@ -629,7 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BEC74AB2559361200D9326B /* SubscriptionController.swift in Sources */,
+				9BEC74AB2559361200D9326B /* PurchaseController.swift in Sources */,
 				9B8416B724A349BF0054D12D /* Tests_macOS.swift in Sources */,
 				9BEC749A2559346400D9326B /* ReceiptValidatorTests.swift in Sources */,
 				9BEC74B6255937CB00D9326B /* SubscriptionsViewControllerTests.swift in Sources */,
@@ -647,6 +648,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9B60244E2563C1C100E12831 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9B60244D2563C1C100E12831 /* BlogEngine */;
+		};
 		9B8416A924A349BF0054D12D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9B84169624A349BE0054D12D /* iOS */;
@@ -1131,6 +1136,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9B60244D2563C1C100E12831 /* BlogEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
+			productName = BlogEngine;
+		};
 		9B75F48824B73934009B8792 /* BlogEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;

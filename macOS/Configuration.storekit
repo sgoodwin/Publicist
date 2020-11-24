@@ -1,6 +1,20 @@
 {
   "products" : [
-
+    {
+      "displayPrice" : "19.99",
+      "familyShareable" : true,
+      "internalID" : "066AA533",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "unlockforever",
+      "referenceName" : "Unlock Forever",
+      "type" : "NonConsumable"
+    }
   ],
   "settings" : {
     "_timeRate" : 6

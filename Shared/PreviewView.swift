@@ -11,7 +11,7 @@ import CoreData
 
 enum ParagraphItem: Hashable {
     case text(String)
-    case image(Data)
+    case image(String, ImageStruct)
 }
 
 struct PreviewView: View {
@@ -45,8 +45,15 @@ struct PreviewView: View {
             .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
         .onAppear {
-            paragraphs = draft.markdown.components(separatedBy: "\n\n").map {
-                .text($0)
+            paragraphs = draft.markdown.components(separatedBy: "\n\n").map { line in
+                if line.hasPrefix("![](") {
+                    if let image = draft.images.first(where: { image in
+                        return line.contains(image.url.absoluteString)
+                    }) {
+                        return .image(line, image)
+                    }
+                }
+                return .text(line)
             }
         }
     }

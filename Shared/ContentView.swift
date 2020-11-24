@@ -27,7 +27,7 @@ struct ContentView: View {
     @State var error: String?
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
-    @EnvironmentObject var subscriptionController: SubscriptionController
+    @EnvironmentObject var subscriptionController: PurchaseController
     
     #if os(macOS)
     let windowMaker = WindowMaker()
@@ -59,6 +59,7 @@ struct ContentView: View {
                 error = "You do not have a valid subscription!"
             }
         }
+        .handlesExternalEvents(preferring: ["*"], allowing: ["md, txt, markdown, jpg, jpeg, png"])
         .sheet(item: $draft, content: { (aDraft) -> PreviewView in
             PreviewView(draft: aDraft, blogEngine: blogEngine) {
                 self.draft = nil
@@ -112,17 +113,25 @@ extension ContentView {
         blogEngine.fetchPosts()
     }
     
+    private func show(_ draft: Draft) {
+        DispatchQueue.main.async {
+            #if os(macOS)
+            windowMaker.makeWindow(draft: draft, engine: blogEngine, context: managedObjectContext)
+            #else
+            self.draft = draft
+            #endif
+        }
+    }
+    
     func extract(_ url: URL) {
         if let extractor = PostExtractor(url as NSURL) {
             let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
             let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
-            DispatchQueue.main.async {
-                #if os(macOS)
-                windowMaker.makeWindow(draft: draft, engine: blogEngine, context: managedObjectContext)
-                #else
-                self.draft = draft
-                #endif
-            }
+            show(draft)
+        }
+        if let extractor = ImageExtractor(url as NSURL) {
+            let draft = Draft(justImages: [ImageStruct(data: extractor.contents, url: url)])
+            show(draft)
         }
     }
 }

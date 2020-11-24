@@ -29,7 +29,7 @@ struct SearchablePostsList: View {
     @State var sharingPresented: Bool = false
     @State var deletePromptShowing: Bool = false
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
-    @EnvironmentObject var subController: SubscriptionController
+    @EnvironmentObject var subController: PurchaseController
     
     var fetchRequest: FetchRequest<Post>
     let account: Account
@@ -89,7 +89,7 @@ struct SearchablePostsList: View {
             )
         )
         .alert(item: $error, content: { error in
-            Alert(title: Text("You'll need to subscribe to unlock posting articles."))
+            Alert(title: Text("This feature is unavailable until you unlock Publicist with a one-time in-app purchase."))
         })
     }
     
@@ -118,8 +118,18 @@ struct DropReceiver: DropDelegate {
     let accounts: [Account]
     let blogEngine: BlogEngine
     let context: NSManagedObjectContext
-    let subController: SubscriptionController
+    let subController: PurchaseController
     let errorBlock: (DropError) -> ()
+    
+    private func show(_ draft: Draft) {
+        DispatchQueue.main.async {
+            #if os(macOS)
+            WindowMaker().makeWindow(draft: draft, engine: blogEngine, context: context)
+            #else
+            print("I haven't implemented what to do on iOS yet!")
+            #endif
+        }
+    }
     
     func performDrop(info: DropInfo) -> Bool {
         if !subController.subscriptionValid {
@@ -136,13 +146,12 @@ struct DropReceiver: DropDelegate {
                 if let extractor = PostExtractor(url as NSURL) {
                     let tags = extractor.tags?.map({ TagObject(name: $0) }) ?? []
                     let draft = Draft(title: extractor.title, markdown: extractor.contents, tags: tags, status: .draft, published_at: Date(), images: [])
-                    DispatchQueue.main.async {
-                        #if os(macOS)
-                        WindowMaker().makeWindow(draft: draft, engine: blogEngine, context: context)
-                        #else
-                        print("I haven't implemented what to do on iOS yet!")
-                        #endif
-                    }
+                    show(draft)
+                }
+                
+                if let extractor = ImageExtractor(url as NSURL) {
+                    let draft = Draft(justImages: [ImageStruct(data: extractor.contents, url: url)])
+                    show(draft)
                 }
             }
 

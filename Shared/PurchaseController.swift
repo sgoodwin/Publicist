@@ -13,7 +13,7 @@ struct Validity: Codable {
     let arbitrary: String
 }
 
-class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     var request: SKRequest?
     var product: SKProduct?
     
@@ -40,7 +40,7 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
         
         validateSubscription()
         
-        let request = SKProductsRequest(productIdentifiers: ["com.roundwallsoftware.Publisher.Yearly"])
+        let request = SKProductsRequest(productIdentifiers: ["unlockforever"])
         self.request = request
         request.delegate = self
         request.start()
@@ -59,7 +59,7 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
         }
     }
     
-    func subscribe() {
+    func unlock() {
         guard let product = product else {
             return
         }
@@ -88,6 +88,7 @@ class SubscriptionController: NSObject, ObservableObject, SKProductsRequestDeleg
             response.invalidProductIdentifiers.forEach { (invalidIdentifier) in
                 print("\(invalidIdentifier) is invalid!")
             }
+            return
         } else {
             print("No invalid identifiers")
         }

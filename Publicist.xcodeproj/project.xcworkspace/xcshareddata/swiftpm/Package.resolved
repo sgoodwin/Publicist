@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/sgoodwin/BlogEngine.git",
         "state": {
           "branch": "main",
-          "revision": "cab50baea6f82b6844a2bb180fc1e6650eba5bb0",
+          "revision": "3abb4880d8227dda5fb5bc8a1655f6015d41af67",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/iwasrobbed/Down",
         "state": {
           "branch": null,
-          "revision": "427aec0a0ab342246ec02369dea398597b61174a",
-          "version": "0.9.3"
+          "revision": "731f6bbab24ab208ea2d6a944e3f8a8a9d5273c7",
+          "version": "0.9.4"
         }
       },
       {

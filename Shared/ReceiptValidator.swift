@@ -46,12 +46,14 @@ struct ReceiptValidator {
             }
             
             let purchases = receipt.inAppPurchaseReceipts.filter { (inAppPurchase) -> Bool in
-                if let _ = inAppPurchase.cancellationDate {
-                    return false
+                if inAppPurchase.productIdentifier == "com.roundwallsoftware.Publisher.Yearly" {
+                    // We don't care anymore if the subscription is expired or not
+                    return true
                 }
-                if let date = inAppPurchase.subscriptionExpirationDate {
-                    return date.timeIntervalSince(now) > 0.0
+                if inAppPurchase.productIdentifier == "com.roundwallsoftware.Publisher.UnlockFroever" {
+                    return true
                 }
+                      
                 return true
             }
             if purchases.count == 0 {
@@ -59,7 +61,7 @@ struct ReceiptValidator {
             }
             
             return .success
-        case .error(let error, _, _):
+        case .error:
             return .invalid
         }
     }
