@@ -9,9 +9,46 @@ import SwiftUI
 import BlogEngine
 import CoreData
 
-enum ParagraphItem: Hashable {
-    case text(String)
-    case image(String, ImageStruct)
+class ParagraphItem: Hashable, Identifiable, ObservableObject {
+    static func == (lhs: ParagraphItem, rhs: ParagraphItem) -> Bool {
+        return lhs.line == rhs.line && lhs.image == rhs.image
+    }
+    
+    var id: String {
+        return line
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(line)
+        hasher.combine(image)
+        hasher.combine(caption)
+    }
+    
+    @Published var line: String
+    @Published var image: ImageStruct?
+    @Published var caption: String? {
+        didSet {
+            if let caption = caption {
+                line = "![\(caption)](\(image!.url)"
+            }
+        }
+    }
+    
+    init(_ line: String) {
+        self.line = line
+    }
+    
+    init(_ line: String, image: ImageStruct) {
+        self.image = image
+        
+        if let generated = line.filter({ !"![]".contains($0) }).split(separator: "(").first {
+            self.caption = String(generated)
+            self.line = line
+        } else {
+            self.caption = nil
+            self.line = "![](\(image.url))"
+        }
+    }
 }
 
 struct PreviewView: View {
@@ -46,14 +83,14 @@ struct PreviewView: View {
         }
         .onAppear {
             paragraphs = draft.markdown.components(separatedBy: "\n\n").map { line in
-                if line.hasPrefix("![](") {
+                if line.hasPrefix("![") {
                     if let image = draft.images.first(where: { image in
                         return line.contains(image.url.absoluteString)
                     }) {
-                        return .image(line, image)
+                        return ParagraphItem(line, image: image)
                     }
                 }
-                return .text(line)
+                return ParagraphItem(line)
             }
         }
     }

@@ -24,6 +24,7 @@ class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate,
         let manager = FileManager.default
         let url = manager.containerURL(forSecurityApplicationGroupIdentifier: "SYSB7DM9AH.Publisher")!.appendingPathComponent("validity")
         if subscriptionValid {
+            print("Recording validity receipt")
             let validity = Validity(valid: true, arbitrary: "pooppooppoop")
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .binary
@@ -50,12 +51,19 @@ class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate,
     
     func validateSubscription() {
         if let url = Bundle.main.appStoreReceiptURL {
-            print("Checking url \(url)")
+            print("Checking receipt at url \(url)")
             let validator = ReceiptValidator(url: url)
             let result = try! validator.validate()
             self.subscriptionValid = result == .success
+            if result == .missing || result == .invalid {
+                print("Receipt is missing, requesting new one")
+                let request = SKReceiptRefreshRequest()
+                request.delegate = self
+                request.start()
+            }
+            
             recordValidIfNecessary()
-            print("Subscription \(self) is valid after checking receipt \(self.subscriptionValid)")
+            print("Receipt \(self) is valid after checking receipt \(self.subscriptionValid)")
         }
     }
     
@@ -70,9 +78,7 @@ class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate,
     }
     
     func refresh() {
-        let request = SKReceiptRefreshRequest(receiptProperties: nil)
-        self.request = request
-        request.start()
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     func showTerms() {
@@ -100,10 +106,26 @@ class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate,
     
     func requestDidFinish(_ request: SKRequest) {
         print("Request finished: \(request)" )
+        
+        DispatchQueue.main.async {
+            self.validateSubscription()
+        }
     }
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
-        print("Request failed: \(error)")
+        if request is SKReceiptRefreshRequest {
+            print("Receipt refresh failed, giving up?")
+        } else {
+            print("Request \(request) failed: \(error)")
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        print("Failed to restore completed receipt transactions \(error)")
+    }
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        print("Receipt restore completed")
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -112,14 +134,14 @@ class PurchaseController: NSObject, ObservableObject, SKProductsRequestDelegate,
                 if transaction.transactionState == .purchased {
                     self.subscriptionValid = true
                     self.recordValidIfNecessary()
-                    print("Subscription \(self) is valid after transaction: \(self.subscriptionValid)")
-                    print("Subscription thread: \(Thread.isMainThread)")
+                    print("Receipt \(self) is valid after transaction: \(self.subscriptionValid)")
+                    print("Receipt thread: \(Thread.isMainThread)")
                     queue.finishTransaction(transaction)
                 }
                 if transaction.transactionState == .failed {
                     self.subscriptionValid = false
                     self.recordValidIfNecessary()
-                    print("Subscription \(self) is valid after transaction: \(self.subscriptionValid)")
+                    print("Receipt \(self) is valid after transaction: \(self.subscriptionValid)")
                     queue.finishTransaction(transaction)
                 }
             }

@@ -61,20 +61,20 @@ struct SearchablePostsList: View {
                     }
                     Button("Delete") {
                         selectedPost = post
-                        deletePromptShowing = true
+                        deletePromptShowing.toggle()
                     }
                 }
                 .alert(isPresented: $deletePromptShowing) { () -> Alert in
                     Alert(
                         title: Text("Delete Post"),
                         message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
-                        primaryButton: Alert.Button.destructive(
+                        primaryButton: .destructive(
                             Text("Delete"),
                             action: {
                                 try! blogEngine.delete(selectedPost!, fromAccount: account)
                             }
                         ),
-                        secondaryButton: Alert.Button.cancel()
+                        secondaryButton: .cancel()
                     )
                 }
         }

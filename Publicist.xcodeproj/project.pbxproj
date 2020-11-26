@@ -51,8 +51,8 @@
 		9BBAA0EC250F8DD80064407C /* ParagraphProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */; };
 		9BC5D5862521FD910072DBC2 /* DraftButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5D5852521FD910072DBC2 /* DraftButtons.swift */; };
 		9BC5D5872521FD910072DBC2 /* DraftButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5D5852521FD910072DBC2 /* DraftButtons.swift */; };
-		9BEC747C25592B4700D9326B /* SubscriptionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */; };
-		9BEC747D25592B4700D9326B /* SubscriptionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */; };
+		9BEC747C25592B4700D9326B /* ReceiptStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC747B25592B4700D9326B /* ReceiptStatusView.swift */; };
+		9BEC747D25592B4700D9326B /* ReceiptStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC747B25592B4700D9326B /* ReceiptStatusView.swift */; };
 		9BEC74932559345500D9326B /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74922559345500D9326B /* ReceiptValidator.swift */; };
 		9BEC74942559345500D9326B /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74922559345500D9326B /* ReceiptValidator.swift */; };
 		9BEC749A2559346400D9326B /* ReceiptValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */; };
@@ -151,7 +151,7 @@
 		9BBAA0E7250F8BD40064407C /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphProcessor.swift; sourceTree = "<group>"; };
 		9BC5D5852521FD910072DBC2 /* DraftButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftButtons.swift; sourceTree = "<group>"; };
-		9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatusView.swift; sourceTree = "<group>"; };
+		9BEC747B25592B4700D9326B /* ReceiptStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStatusView.swift; sourceTree = "<group>"; };
 		9BEC74922559345500D9326B /* ReceiptValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptValidator.swift; sourceTree = "<group>"; };
 		9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptValidatorTests.swift; sourceTree = "<group>"; };
 		9BEC74AA2559361200D9326B /* PurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseController.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				9BF4E8EC2519015500226C58 /* StatusMenu.swift */,
 				9BC5D5852521FD910072DBC2 /* DraftButtons.swift */,
 				9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */,
-				9BEC747B25592B4700D9326B /* SubscriptionStatusView.swift */,
+				9BEC747B25592B4700D9326B /* ReceiptStatusView.swift */,
 				9BEC74AA2559361200D9326B /* PurchaseController.swift */,
 			);
 			path = Shared;
@@ -582,7 +582,7 @@
 				9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */,
 				9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
 				9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
-				9BEC747C25592B4700D9326B /* SubscriptionStatusView.swift in Sources */,
+				9BEC747C25592B4700D9326B /* ReceiptStatusView.swift in Sources */,
 				9B8416CE24A34A680054D12D /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,7 +594,7 @@
 				9B48BF152518A5810099701B /* View+Sharing.swift in Sources */,
 				9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
 				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
-				9BEC747D25592B4700D9326B /* SubscriptionStatusView.swift in Sources */,
+				9BEC747D25592B4700D9326B /* ReceiptStatusView.swift in Sources */,
 				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9BF4E8BB2518EAF500226C58 /* ParagraphsView.swift in Sources */,
 				9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */,

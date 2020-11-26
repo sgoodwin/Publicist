@@ -46,7 +46,7 @@ struct ContentView: View {
                     Text("Select an account")
                     Spacer()
                 }
-                SubscriptionStatusView()
+                ReceiptStatusView()
             }
         }
         .onOpenURL { (url) in
