@@ -26,7 +26,7 @@ struct Banner: View {
     }
 }
 
-struct SubscriptionStatusView: View {
+struct ReceiptStatusView: View {
     @EnvironmentObject var controller: PurchaseController
     
     var body: some View {
@@ -59,7 +59,7 @@ struct SubscriptionStatusView: View {
 struct SubscriptionStatusView_Preview: PreviewProvider {
     static var previews: some View {
         Group {
-            SubscriptionStatusView()
+            ReceiptStatusView()
         }
     }
 }
