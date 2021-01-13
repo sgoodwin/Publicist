@@ -14,12 +14,14 @@ extension PreviewProvider {
         let container = CustomPersistentContainer.blogEngineContainer(group: nil)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
+        description.shouldMigrateStoreAutomatically = true
+        description.shouldInferMappingModelAutomatically = true
         
         container.persistentStoreDescriptions = [
             description
         ]
         container.loadPersistentStores { (d, error) in
-            fatalError(error?.localizedDescription ?? "Don't know why it failed")
+            fatalError("Failed to load stores \(d) \(String(describing: error)) \(error?.localizedDescription ?? "Don't know why it failed")")
         }
         return container
     }

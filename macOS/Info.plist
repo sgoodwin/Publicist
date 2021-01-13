@@ -13,6 +13,8 @@
 				<string>markdown</string>
 				<string>txt</string>
 			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/markdown</string>
@@ -33,6 +35,8 @@
 				<string>jpeg</string>
 				<string>png</string>
 			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>image/jpeg</string>

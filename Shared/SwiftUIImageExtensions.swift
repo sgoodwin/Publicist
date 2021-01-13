@@ -8,11 +8,19 @@
 import SwiftUI
 
 extension Image {
-    static func from(data: Data) -> Image {
+    static func from(data: Data) -> Image? {
         #if os(macOS)
-        return Image(nsImage: NSImage(data: data)!)
+        print("Trying to make image from data")
+        guard let image = NSImage(data: data) else {
+            print("Couldn't make an image from data")
+            return nil
+        }
+        return Image(nsImage: image)
         #else
-        return Image(uiImage: UIImage(data: data)!)
+        guard let image = UIImage(data: data) else {
+            return nil
+        }
+        return Image(uiImage: image)
         #endif
     }
 }

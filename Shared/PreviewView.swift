@@ -35,6 +35,7 @@ class ParagraphItem: Hashable, Identifiable, ObservableObject {
     }
     
     init(_ line: String) {
+        print(line)
         self.line = line
     }
     
@@ -51,10 +52,18 @@ class ParagraphItem: Hashable, Identifiable, ObservableObject {
     }
 }
 
+extension Draft {
+    init(items: [ParagraphItem]) {
+        self.init(title: "you did it", markdown: "whoop")
+    }
+}
+
 struct PreviewView: View {
+    let draft: Draft
     @State var paragraphs: [ParagraphItem] = []
-    @State var draft: Draft
+    
     @State var selectedAccount: Account?
+    @State var selectedParagraph: ParagraphItem?
     
     let blogEngine: BlogEngine
     
@@ -74,12 +83,18 @@ struct PreviewView: View {
             .padding(8)
             #endif
             
-            ParagraphsView(paragraphs: $paragraphs)
+            List(selection: $selectedParagraph) {
+                ForEach(paragraphs, id: \.self) { paragraph in
+                    ParagraphView(paragraph: paragraph)
+                }
+                .onInsert(of: [.image, .jpeg, .png, .fileURL], perform: insert)
+            }
+            .listStyle(PlainListStyle())
             
-            FormFields(draft: $draft)
-            
-            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: close, post: post)
-            .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//            FormFields(draft: $draft)
+//
+//            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: close, post: post)
+//            .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
         .onAppear {
             paragraphs = draft.markdown.components(separatedBy: "\n\n").map { line in
@@ -95,9 +110,36 @@ struct PreviewView: View {
         }
     }
     
+    func insert(index: Int, providers: [NSItemProvider]) {
+        print("inserting!")
+        for provider in providers {
+            print(provider.registeredTypeIdentifiers)
+            
+            if provider.hasItemConformingToTypeIdentifier("public.image") {
+                provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
+                    print(fileURL ?? "no file url!")
+                    if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
+                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
+                        paragraphs.insert(item, at: index)
+                    }
+                }
+            } else {
+                provider.loadFileRepresentation(forTypeIdentifier: "public.file-url") { (fileURL, error) in
+                    print(fileURL ?? "no file url!")
+                    let values = try? fileURL?.resourceValues(forKeys: [.typeIdentifierKey])
+                    
+                    if let fileURL = fileURL, values?.typeIdentifier == "public.image", let data = try? Data(contentsOf: fileURL) {
+                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
+                        paragraphs.insert(item, at: index)
+                    }
+                }
+            }
+        }
+    }
+    
     func post() {
         if let account = selectedAccount {
-            try! blogEngine.post(draft, toAccount: account)
+            try! blogEngine.post(Draft(items: paragraphs), toAccount: account)
             close()
         }
     }

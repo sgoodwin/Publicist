@@ -11,6 +11,8 @@
 		9B48BF142518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
 		9B48BF152518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
 		9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF1A2518A7B30099701B /* SharingPIcker.swift */; };
+		9B56081325AEFD4100143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
+		9B56081925AEFD4400143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
 		9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
 		9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
 		9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */; };
@@ -41,7 +43,6 @@
 		9BB2E086255BE0C2004E7367 /* Publish.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BB2E079255BE0C2004E7367 /* Publish.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9BB2E0A2255BE126004E7367 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2E096255BE126004E7367 /* ShareViewController.swift */; };
 		9BB2E0A4255BE126004E7367 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E099255BE126004E7367 /* ShareViewController.xib */; };
-		9BB2E0A5255BE126004E7367 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E09D255BE126004E7367 /* InfoPlist.strings */; };
 		9BB2E0A6255BE126004E7367 /* ShareViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E09F255BE126004E7367 /* ShareViewController.strings */; };
 		9BB2E0A7255BE126004E7367 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E0A1255BE126004E7367 /* icon.icns */; };
 		9BB2E0AE255BE16D004E7367 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9BB2E0AD255BE16D004E7367 /* BlogEngine */; };
@@ -67,8 +68,6 @@
 		9BEC74F4255957BA00D9326B /* StoreKitFakeCert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */; };
 		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
-		9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
-		9BF4E8BB2518EAF500226C58 /* ParagraphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */; };
 		9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */; };
 		9BF4E8C22518EC7C00226C58 /* AccountMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */; };
 		9BF4E8ED2519015500226C58 /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8EC2519015500226C58 /* StatusMenu.swift */; };
@@ -117,6 +116,7 @@
 		9B48BF0D2518A1900099701B /* WindowMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaker.swift; sourceTree = "<group>"; };
 		9B48BF132518A5810099701B /* View+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Sharing.swift"; sourceTree = "<group>"; };
 		9B48BF1A2518A7B30099701B /* SharingPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingPIcker.swift; sourceTree = "<group>"; };
+		9B56081225AEFD4100143B07 /* ParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePostsList.swift; sourceTree = "<group>"; };
 		9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B586D3C24D7EC820072BAE1 /* ListOfAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAccounts.swift; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 		9BEC74ED2559565800D9326B /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitFakeCert.cer; sourceTree = "<group>"; };
 		9BF4E8B22518EA7B00226C58 /* FormFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFields.swift; sourceTree = "<group>"; };
-		9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphsView.swift; sourceTree = "<group>"; };
 		9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMenu.swift; sourceTree = "<group>"; };
 		9BF4E8EC2519015500226C58 /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,13 +253,13 @@
 				9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */,
 				9B48BF132518A5810099701B /* View+Sharing.swift */,
 				9BF4E8B22518EA7B00226C58 /* FormFields.swift */,
-				9BF4E8B92518EAF500226C58 /* ParagraphsView.swift */,
 				9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */,
 				9BF4E8EC2519015500226C58 /* StatusMenu.swift */,
 				9BC5D5852521FD910072DBC2 /* DraftButtons.swift */,
 				9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */,
 				9BEC747B25592B4700D9326B /* ReceiptStatusView.swift */,
 				9BEC74AA2559361200D9326B /* PurchaseController.swift */,
+				9B56081225AEFD4100143B07 /* ParagraphView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -464,7 +463,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					9B84169624A349BE0054D12D = {
 						CreatedOnToolsVersion = 12.0;
@@ -553,7 +552,6 @@
 				9BB2E0A7255BE126004E7367 /* icon.icns in Resources */,
 				9BB2E0A4255BE126004E7367 /* ShareViewController.xib in Resources */,
 				9BB2E0A6255BE126004E7367 /* ShareViewController.strings in Resources */,
-				9BB2E0A5255BE126004E7367 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,12 +572,12 @@
 				9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */,
 				9B8416BB24A349BF0054D12D /* ContentView.swift in Sources */,
 				9BA172F7253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */,
-				9BF4E8BA2518EAF500226C58 /* ParagraphsView.swift in Sources */,
 				9BEC74932559345500D9326B /* ReceiptValidator.swift in Sources */,
 				9BBAA0EB250F8DD80064407C /* ParagraphProcessor.swift in Sources */,
 				9B8416B924A349BF0054D12D /* PublicistApp.swift in Sources */,
 				9B586D3D24D7EC820072BAE1 /* ListOfAccounts.swift in Sources */,
 				9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */,
+				9B56081325AEFD4100143B07 /* ParagraphView.swift in Sources */,
 				9B586D3A24D7EC5F0072BAE1 /* SettingsView.swift in Sources */,
 				9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9BEC747C25592B4700D9326B /* ReceiptStatusView.swift in Sources */,
@@ -596,7 +594,6 @@
 				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9BEC747D25592B4700D9326B /* ReceiptStatusView.swift in Sources */,
 				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
-				9BF4E8BB2518EAF500226C58 /* ParagraphsView.swift in Sources */,
 				9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */,
 				9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */,
 				9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */,
@@ -615,6 +612,7 @@
 				9B586D3824D7EC280072BAE1 /* SearchablePostsList.swift in Sources */,
 				9BEC74D8255945B900D9326B /* RSAppMovementMonitor.swift in Sources */,
 				9B8416CF24A34A680054D12D /* PostCell.swift in Sources */,
+				9B56081925AEFD4400143B07 /* ParagraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +699,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -753,6 +752,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -762,6 +762,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -807,6 +808,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.16;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
