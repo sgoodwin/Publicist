@@ -15,6 +15,10 @@ struct ParagraphView: View {
         VStack {
             if let image = paragraph.image {
                 Image(nsImage: NSImage(data: image.data)!)
+                    .aspectRatio(contentMode: .fit)
+                if let caption = paragraph.caption {
+                    Text(caption)
+                }
             }
             Text(paragraph.line)
         }

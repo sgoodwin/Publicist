@@ -15,20 +15,20 @@ class WindowMaker {
     
     func makeWindow(draft: Draft, engine: BlogEngine, context: NSManagedObjectContext) {
         let window = NSWindow(
-            contentViewController: NSHostingController(rootView:
-                                                        PreviewView(
-                                                            draft: draft,
-                                                            blogEngine: engine,
-                                                            close: close
-                                                        )
-                                                        .frame(minWidth: 500, minHeight: 500)
-                                                        .environment(\.managedObjectContext, context
-                                                        )
+            contentViewController: NSHostingController(
+                rootView: PreviewView(
+                    draft: draft,
+                    blogEngine: engine,
+                    close: close
+                )
+                .frame(minWidth: 660, minHeight: 500)
+                .environment(\.managedObjectContext, context
+                )
             )
         )
         window.title = "New Post"
         window.isOpaque = true
-        window.minSize = NSSize(width: 500, height: 500)
+        window.minSize = NSSize(width: 660, height: 500)
         window.isMovableByWindowBackground = true
         window.toolbarStyle = .unified
         window.styleMask = [.fullSizeContentView, .closable, .titled, .miniaturizable, .resizable, .unifiedTitleAndToolbar]

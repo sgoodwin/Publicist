@@ -52,61 +52,46 @@ class ParagraphItem: Hashable, Identifiable, ObservableObject {
     }
 }
 
-extension Draft {
-    init(items: [ParagraphItem]) {
-        self.init(title: "you did it", markdown: "whoop")
-    }
-}
-
 struct PreviewView: View {
-    let draft: Draft
-    @State var paragraphs: [ParagraphItem] = []
-    
-    @State var selectedAccount: Account?
-    @State var selectedParagraph: ParagraphItem?
-    
+    @State var draft: Draft
     let blogEngine: BlogEngine
-    
     let close: () -> Void
+    
+    @State var paragraphs: [ParagraphItem]
+    @State var selectedAccount: Account?
+    
+    init(draft: Draft, blogEngine: BlogEngine, close: @escaping () -> Void) {
+        _draft = State(initialValue: draft)
+        self.blogEngine = blogEngine
+        self.close = close
+        
+        let lines: [ParagraphItem] = draft.markdown.components(separatedBy: "\n\n").map { line in
+            if line.hasPrefix("![") {
+                if let image = draft.images.first(where: { image in
+                    return line.contains(image.url.absoluteString)
+                }) {
+                    return ParagraphItem(line, image: image)
+                }
+            }
+            return ParagraphItem(line)
+        }
+        _paragraphs = State(initialValue: lines)
+    }
     
     var body: some View {
         VStack {
-            #if os(iOS)
-            HStack {
-                Button("Cancel", action: close)
-                
-                Spacer()
-                
-                Button("Post", action: post)
-                .disabled(selectedAccount == nil)
-            }
-            .padding(8)
-            #endif
-            
-            List(selection: $selectedParagraph) {
-                ForEach(paragraphs, id: \.self) { paragraph in
+            List() {
+                ForEach(paragraphs, id: \.id) { paragraph in
                     ParagraphView(paragraph: paragraph)
                 }
-                .onInsert(of: [.image, .jpeg, .png, .fileURL], perform: insert)
+                .onInsert(of: [.fileURL], perform: insert)
             }
             .listStyle(PlainListStyle())
             
-//            FormFields(draft: $draft)
-//
-//            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: close, post: post)
-//            .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-        }
-        .onAppear {
-            paragraphs = draft.markdown.components(separatedBy: "\n\n").map { line in
-                if line.hasPrefix("![") {
-                    if let image = draft.images.first(where: { image in
-                        return line.contains(image.url.absoluteString)
-                    }) {
-                        return ParagraphItem(line, image: image)
-                    }
-                }
-                return ParagraphItem(line)
-            }
+            FormFields(draft: $draft)
+
+            DraftButtons(selectedAccount: $selectedAccount, draft: $draft, cancel: close, post: post)
+            .padding([.leading, .trailing, .bottom], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         }
     }
     
@@ -117,19 +102,28 @@ struct PreviewView: View {
             
             if provider.hasItemConformingToTypeIdentifier("public.image") {
                 provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
-                    print(fileURL ?? "no file url!")
+                    print("public.image file url \(fileURL)")
                     if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
                         let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
+                        print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
                 }
             } else {
-                provider.loadFileRepresentation(forTypeIdentifier: "public.file-url") { (fileURL, error) in
-                    print(fileURL ?? "no file url!")
-                    let values = try? fileURL?.resourceValues(forKeys: [.typeIdentifierKey])
+                _ = provider.loadObject(ofClass: URL.self) { (fileURL, error) in
+                    guard let fileURL = fileURL else {
+                        print("Missing file url!")
+                        return
+                    }
                     
-                    if let fileURL = fileURL, values?.typeIdentifier == "public.image", let data = try? Data(contentsOf: fileURL) {
-                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
+                    guard let data = try? Data(contentsOf: fileURL) else {
+                        print("Missing data!")
+                        return
+                    }
+                    
+                    if NSImage(data: data) != nil {
+                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL))", image: ImageStruct(data: data, url: fileURL))
+                        print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
                 }
@@ -139,7 +133,9 @@ struct PreviewView: View {
     
     func post() {
         if let account = selectedAccount {
-            try! blogEngine.post(Draft(items: paragraphs), toAccount: account)
+            draft.markdown = paragraphs.map({ $0.line }).joined(separator: "\n")
+            draft.images = paragraphs.compactMap({ $0.image })
+            try! blogEngine.post(draft, toAccount: account)
             close()
         }
     }
