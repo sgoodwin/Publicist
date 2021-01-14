@@ -10,22 +10,24 @@ import SwiftUI
 
 struct ParagraphView: View {
     let paragraph: ParagraphItem
+    @State var caption: String = ""
     
     var body: some View {
-        VStack(spacing: 8) {
-            if let image = paragraph.image {
+        if let image = paragraph.image {
+            VStack(alignment: .center) {
                 Image(nsImage: NSImage(data: image.data)!)
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .clipped()
-                    .frame(width: 300, height: 300)
-                if let caption = paragraph.caption {
-                    Text(caption)
-                        .multilineTextAlignment(.leading)
+                    .frame(height: 300)
+                TextField("caption", text: $caption, onCommit:  {
+                    paragraph.caption = caption
+                }).onAppear {
+                    caption = paragraph.caption ?? ""
                 }
-            } else {
-                Text(paragraph.line)
-                    .multilineTextAlignment(.leading)
             }
+        } else {
+            Text(paragraph.line)
+                .multilineTextAlignment(.leading)
         }
     }
 }
