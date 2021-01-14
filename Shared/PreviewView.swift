@@ -95,25 +95,24 @@ struct PreviewView: View {
         }
     }
     
+    private func addItem(_ fileURL: URL?, index: Int) {
+        if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL), NSImage(data: data) != nil {
+            let title = fileURL.deletingPathExtension().lastPathComponent
+            let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
+            paragraphs.insert(item, at: index)
+        }
+    }
+    
     func insert(index: Int, providers: [NSItemProvider]) {
         for provider in providers {
-            print(provider.registeredTypeIdentifiers)
             
             if provider.hasItemConformingToTypeIdentifier("public.image") {
                 provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
-                    if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
-                        let title = fileURL.deletingPathExtension().lastPathComponent
-                        let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
-                        paragraphs.insert(item, at: index)
-                    }
+                    addItem(fileURL, index: index)
                 }
             } else {
                 _ = provider.loadObject(ofClass: URL.self) { (fileURL, error) in
-                    if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL), NSImage(data: data) != nil {
-                        let title = fileURL.deletingPathExtension().lastPathComponent
-                        let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
-                        paragraphs.insert(item, at: index)
-                    }
+                    addItem(fileURL, index: index)
                 }
             }
         }
