@@ -102,7 +102,6 @@ struct PreviewView: View {
             
             if provider.hasItemConformingToTypeIdentifier("public.image") {
                 provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
-                    print("public.image file url \(fileURL)")
                     if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
                         let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
                         print("Inserted! \(item.line)")

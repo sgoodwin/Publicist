@@ -24,6 +24,9 @@ struct AccountMenu: View {
             }
         }
         .menuStyle(AccountMenyStyle())
+        .onAppear {
+            self.selectedAccount = fetchedResults.first
+        }
     }
 }
 
