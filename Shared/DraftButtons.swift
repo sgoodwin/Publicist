@@ -31,6 +31,7 @@ struct DraftButtons: View {
             Spacer()
             
             Button("Post", action: post)
+                .disabled(selectedAccount == nil)
         }
         #else
         HStack {
