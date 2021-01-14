@@ -12,15 +12,20 @@ struct ParagraphView: View {
     let paragraph: ParagraphItem
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             if let image = paragraph.image {
                 Image(nsImage: NSImage(data: image.data)!)
                     .aspectRatio(contentMode: .fit)
+                    .clipped()
+                    .frame(width: 300, height: 300)
                 if let caption = paragraph.caption {
                     Text(caption)
+                        .multilineTextAlignment(.leading)
                 }
+            } else {
+                Text(paragraph.line)
+                    .multilineTextAlignment(.leading)
             }
-            Text(paragraph.line)
         }
     }
 }

@@ -103,7 +103,8 @@ struct PreviewView: View {
             if provider.hasItemConformingToTypeIdentifier("public.image") {
                 provider.loadFileRepresentation(forTypeIdentifier: "public.image") { (fileURL, error) in
                     if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
-                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL)", image: ImageStruct(data: data, url: fileURL))
+                        let title = fileURL.deletingPathExtension().lastPathComponent
+                        let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
                         print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
@@ -121,7 +122,8 @@ struct PreviewView: View {
                     }
                     
                     if NSImage(data: data) != nil {
-                        let item = ParagraphItem("![\(fileURL.deletingPathExtension().lastPathComponent)](\(fileURL))", image: ImageStruct(data: data, url: fileURL))
+                        let title = fileURL.deletingPathExtension().lastPathComponent
+                        let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
                         print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
