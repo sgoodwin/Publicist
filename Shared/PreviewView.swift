@@ -96,7 +96,6 @@ struct PreviewView: View {
     }
     
     func insert(index: Int, providers: [NSItemProvider]) {
-        print("inserting!")
         for provider in providers {
             print(provider.registeredTypeIdentifiers)
             
@@ -105,26 +104,14 @@ struct PreviewView: View {
                     if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL) {
                         let title = fileURL.deletingPathExtension().lastPathComponent
                         let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
-                        print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
                 }
             } else {
                 _ = provider.loadObject(ofClass: URL.self) { (fileURL, error) in
-                    guard let fileURL = fileURL else {
-                        print("Missing file url!")
-                        return
-                    }
-                    
-                    guard let data = try? Data(contentsOf: fileURL) else {
-                        print("Missing data!")
-                        return
-                    }
-                    
-                    if NSImage(data: data) != nil {
+                    if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL), NSImage(data: data) != nil {
                         let title = fileURL.deletingPathExtension().lastPathComponent
                         let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
-                        print("Inserted! \(item.line)")
                         paragraphs.insert(item, at: index)
                     }
                 }
