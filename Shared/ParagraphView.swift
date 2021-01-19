@@ -14,7 +14,7 @@ struct ParagraphView: View {
     
     var body: some View {
         if let image = paragraph.image {
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 4) {
                 Image(nsImage: NSImage(data: image.data)!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -24,6 +24,7 @@ struct ParagraphView: View {
                 }).onAppear {
                     caption = paragraph.caption ?? ""
                 }
+                .multilineTextAlignment(.center)
             }
         } else {
             Text(paragraph.line)

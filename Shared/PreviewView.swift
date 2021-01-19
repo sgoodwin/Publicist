@@ -83,6 +83,15 @@ struct PreviewView: View {
             List() {
                 ForEach(paragraphs, id: \.id) { paragraph in
                     ParagraphView(paragraph: paragraph)
+                        .contextMenu {
+                            if paragraph.image != nil, let index = paragraphs.firstIndex(of: paragraph) {
+                                Button("Delete", action: {
+                                    paragraphs.remove(at: index)
+                                })
+                            } else {
+                                EmptyView()
+                            }
+                        }
                 }
                 .onInsert(of: [.fileURL], perform: insert)
             }
