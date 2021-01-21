@@ -32,6 +32,12 @@ struct ListOfAccounts: View {
             List(fetchedResults, id: \.self, selection: $selectedAccount) { account in
                 #if os(macOS)
                 Text(verbatim: account.name!)
+                    .contextMenu {
+                        Button("Delete") {
+                            managedObjectContext.delete(account)
+                            try! managedObjectContext.save()
+                        }
+                    }
                 #else
                 NavigationLink(destination: SearchablePostsList(account: account, blogEngine: blogEngine)) {
                     Text(verbatim: account.name!)

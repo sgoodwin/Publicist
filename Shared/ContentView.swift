@@ -24,7 +24,7 @@ struct ContentView: View {
     @State var statusFilter: PostStatus?
     
     @State var draft: Draft?
-    @State var error: String?
+    @State var error: DropError?
     
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     @EnvironmentObject var subscriptionController: PurchaseController
@@ -40,7 +40,7 @@ struct ContentView: View {
             
             VStack {
                 if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine)
+                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine, error: $error)
                 } else {
                     Spacer()
                     Text("Select an account")
@@ -56,7 +56,7 @@ struct ContentView: View {
             if subscriptionController.subscriptionValid {
                 extract(url)
             } else {
-                error = "You do not have a valid subscription!"
+                error = .invalidSubscription
             }
         }
         .handlesExternalEvents(preferring: ["*"], allowing: ["md, txt, markdown, jpg, jpeg, png"])
@@ -66,7 +66,7 @@ struct ContentView: View {
             }
         })
         .alert(item: $error, content: { error in
-            Alert(title: Text(error))
+            Alert(title: Text("This feature is unavailable until you unlock Publicist with a one-time in-app purchase."))
         })
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .toolbar {

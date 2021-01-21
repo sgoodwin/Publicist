@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF0D2518A1900099701B /* WindowMaker.swift */; };
-		9B48BF142518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
-		9B48BF152518A5810099701B /* View+Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF132518A5810099701B /* View+Sharing.swift */; };
-		9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF1A2518A7B30099701B /* SharingPIcker.swift */; };
 		9B56081325AEFD4100143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
 		9B56081925AEFD4400143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
 		9B586D3724D7EC280072BAE1 /* SearchablePostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */; };
@@ -114,8 +111,6 @@
 
 /* Begin PBXFileReference section */
 		9B48BF0D2518A1900099701B /* WindowMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaker.swift; sourceTree = "<group>"; };
-		9B48BF132518A5810099701B /* View+Sharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Sharing.swift"; sourceTree = "<group>"; };
-		9B48BF1A2518A7B30099701B /* SharingPIcker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingPIcker.swift; sourceTree = "<group>"; };
 		9B56081225AEFD4100143B07 /* ParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePostsList.swift; sourceTree = "<group>"; };
 		9B586D3924D7EC5F0072BAE1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -251,7 +246,6 @@
 				9B586D4524D7F97A0072BAE1 /* AddAccountForm.swift */,
 				9BBAA0E7250F8BD40064407C /* PreviewView.swift */,
 				9BBAA0EA250F8DD80064407C /* ParagraphProcessor.swift */,
-				9B48BF132518A5810099701B /* View+Sharing.swift */,
 				9BF4E8B22518EA7B00226C58 /* FormFields.swift */,
 				9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */,
 				9BF4E8EC2519015500226C58 /* StatusMenu.swift */,
@@ -291,7 +285,6 @@
 				9B8416A124A349BE0054D12D /* Info.plist */,
 				9B8416A224A349BE0054D12D /* macOS.entitlements */,
 				9B48BF0D2518A1900099701B /* WindowMaker.swift */,
-				9B48BF1A2518A7B30099701B /* SharingPIcker.swift */,
 				9BEC74ED2559565800D9326B /* Configuration.storekit */,
 				9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */,
 			);
@@ -566,7 +559,6 @@
 				9BC5D5862521FD910072DBC2 /* DraftButtons.swift in Sources */,
 				9B586D4624D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9B586D4024D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
-				9B48BF142518A5810099701B /* View+Sharing.swift in Sources */,
 				9BF4E8ED2519015500226C58 /* StatusMenu.swift in Sources */,
 				9BBAA0E8250F8BD40064407C /* PreviewView.swift in Sources */,
 				9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */,
@@ -589,13 +581,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B48BF152518A5810099701B /* View+Sharing.swift in Sources */,
 				9B586D4424D7EE1C0072BAE1 /* PreviewCoreDataStack.swift in Sources */,
 				9B586D4724D7F97A0072BAE1 /* AddAccountForm.swift in Sources */,
 				9BEC747D25592B4700D9326B /* ReceiptStatusView.swift in Sources */,
 				9B586D4124D7EC990072BAE1 /* ProgressWithStatus.swift in Sources */,
 				9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */,
-				9B48BF1B2518A7B30099701B /* SharingPIcker.swift in Sources */,
 				9BBAA0E9250F8BD40064407C /* PreviewView.swift in Sources */,
 				9BEC74942559345500D9326B /* ReceiptValidator.swift in Sources */,
 				9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */,

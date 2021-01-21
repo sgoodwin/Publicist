@@ -24,6 +24,24 @@ extension Post {
     }
 }
 
+extension NSSharingService {
+    static func submenu(url: URL) -> some View {
+        return Menu(
+            content: {
+                ForEach(NSSharingService.sharingServices(forItems: [""]), id: \.title) { item in
+                    Button(action: { item.perform(withItems: [url]) }) {
+                        Image(nsImage: item.image)
+                        Text(item.title)
+                    }
+                }
+            },
+            label: {
+                Text("Share")
+            }
+        )
+    }
+}
+
 struct SearchablePostsList: View {
     @State var selectedPost: Post?
     @State var sharingPresented: Bool = false
@@ -34,12 +52,14 @@ struct SearchablePostsList: View {
     var fetchRequest: FetchRequest<Post>
     let account: Account
     let blogEngine: BlogEngine
-    @State var error: DropError?
+    @Binding var error: DropError?
+    @State var showingShareMenu = false
     
-    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine) {
+    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine, error: Binding<DropError?>) {
         self.account = account
         self.blogEngine = blogEngine
         self.fetchRequest = Post.allFrom(account, status: statusFilter)
+        _error = error
     }
     
     var body: some View {
@@ -56,26 +76,11 @@ struct SearchablePostsList: View {
                             try! blogEngine.publishDraftOnServer(post, toAccount: account)
                         }
                     }
-                    Button("Share") {
-                        share([account.url(for: post)!])
-                    }
+                    NSSharingService.submenu(url: account.url(for: post)!)
                     Button("Delete") {
                         selectedPost = post
                         deletePromptShowing.toggle()
                     }
-                }
-                .alert(isPresented: $deletePromptShowing) { () -> Alert in
-                    Alert(
-                        title: Text("Delete Post"),
-                        message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
-                        primaryButton: .destructive(
-                            Text("Delete"),
-                            action: {
-                                try! blogEngine.delete(selectedPost!, fromAccount: account)
-                            }
-                        ),
-                        secondaryButton: .cancel()
-                    )
                 }
         }
         .onDrop(
@@ -88,9 +93,20 @@ struct SearchablePostsList: View {
                 subController: subController, errorBlock: { error = $0 }
             )
         )
-        .alert(item: $error, content: { error in
-            Alert(title: Text("This feature is unavailable until you unlock Publicist with a one-time in-app purchase."))
-        })
+        .alert(isPresented: $deletePromptShowing) { () -> Alert in
+            Alert(
+                title: Text("Delete Post"),
+                message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
+                primaryButton: .destructive(
+                    Text("Delete"),
+                    action: {
+                        try! blogEngine.delete(selectedPost!, fromAccount: account)
+                        selectedPost = nil
+                    }
+                ),
+                secondaryButton: .cancel()
+            )
+        }
     }
     
     func openURL(account: Account, post: Post) {
@@ -126,7 +142,7 @@ struct DropReceiver: DropDelegate {
             #if os(macOS)
             WindowMaker().makeWindow(draft: draft, engine: blogEngine, context: context)
             #else
-            print("I haven't implemented what to do on iOS yet!")
+            fatalError("I haven't implemented what to do on iOS yet!")
             #endif
         }
     }
