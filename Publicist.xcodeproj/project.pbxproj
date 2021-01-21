@@ -37,6 +37,7 @@
 		9B8C2F30255D361300912923 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8C2F2F255D361300912923 /* BlogEngine */; };
 		9BA172F7253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
 		9BA172F8253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
+		9BB1064925B99CB000797F7F /* ParagraphItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1064825B99CB000797F7F /* ParagraphItemTests.swift */; };
 		9BB2E086255BE0C2004E7367 /* Publish.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9BB2E079255BE0C2004E7367 /* Publish.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9BB2E0A2255BE126004E7367 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB2E096255BE126004E7367 /* ShareViewController.swift */; };
 		9BB2E0A4255BE126004E7367 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB2E099255BE126004E7367 /* ShareViewController.xib */; };
@@ -134,6 +135,7 @@
 		9B8416B824A349BF0054D12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B8416CD24A34A680054D12D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIImageExtensions.swift; sourceTree = "<group>"; };
+		9BB1064825B99CB000797F7F /* ParagraphItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphItemTests.swift; sourceTree = "<group>"; };
 		9BB2E079255BE0C2004E7367 /* Publish.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Publish.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB2E095255BE125004E7367 /* Publish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Publish-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BB2E096255BE126004E7367 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */,
 				9B8416B624A349BF0054D12D /* Tests_macOS.swift */,
 				9B8416B824A349BF0054D12D /* Info.plist */,
+				9BB1064825B99CB000797F7F /* ParagraphItemTests.swift */,
 			);
 			path = "Tests macOS";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 			files = (
 				9BEC74AB2559361200D9326B /* PurchaseController.swift in Sources */,
 				9B8416B724A349BF0054D12D /* Tests_macOS.swift in Sources */,
+				9BB1064925B99CB000797F7F /* ParagraphItemTests.swift in Sources */,
 				9BEC749A2559346400D9326B /* ReceiptValidatorTests.swift in Sources */,
 				9BEC74B6255937CB00D9326B /* SubscriptionsViewControllerTests.swift in Sources */,
 			);

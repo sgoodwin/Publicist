@@ -29,7 +29,7 @@ class ParagraphItem: Hashable, Identifiable, ObservableObject {
     @Published var caption: String? {
         didSet {
             if let caption = caption {
-                line = "![\(caption)](\(image!.url)"
+                line = "![\(caption)](\(image!.url) \"\(caption)\")"
             }
         }
     }
@@ -107,7 +107,7 @@ struct PreviewView: View {
     private func addItem(_ fileURL: URL?, index: Int) {
         if let fileURL = fileURL, let data = try? Data(contentsOf: fileURL), NSImage(data: data) != nil {
             let title = fileURL.deletingPathExtension().lastPathComponent
-            let item = ParagraphItem("![\(title)](\(fileURL) \(title)", image: ImageStruct(data: data, url: fileURL))
+            let item = ParagraphItem("![\(title)](\(fileURL) \"\(title)\")", image: ImageStruct(data: data, url: fileURL))
             paragraphs.insert(item, at: index)
         }
     }
