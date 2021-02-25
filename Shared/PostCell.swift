@@ -32,11 +32,11 @@ struct StatusLabel: View {
             VStack {
                 Image(systemName: "calendar.badge.clock")
                     .imageScale(.large)
-                Text(publishedDate!, formatter: dateFormat)
+                Text(verbatim: dateFormat.string(from: publishedDate!))
             }
             .padding()
         } else {
-            Text(publishedDate!, formatter: dateFormat)
+            Text(verbatim: dateFormat.string(from: publishedDate!))
         }
     }
 }

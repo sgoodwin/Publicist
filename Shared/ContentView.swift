@@ -21,6 +21,7 @@ struct ContentView: View {
     @ObservedObject var blogEngine: BlogEngine
     
     @State var selectedAccount: Account?
+    @State var selectedPost: Post?
     @State var statusFilter: PostStatus?
     
     @State var draft: Draft?
@@ -35,12 +36,12 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ListOfAccounts(progress: blogEngine.progress, selectedAccount: $selectedAccount, blogEngine: blogEngine)
+            ListOfAccounts(selectedAccount: $selectedAccount, blogEngine: blogEngine)
                 .frame(minWidth: 200)
             
             VStack {
                 if let selectedAccount = selectedAccount {
-                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine, error: $error)
+                    SearchablePostsList(account: selectedAccount, statusFilter: statusFilter, blogEngine: blogEngine, error: $error, selectedPost: $selectedPost)
                 } else {
                     Spacer()
                     Text("Select an account")
@@ -70,16 +71,21 @@ struct ContentView: View {
         })
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .toolbar {
-            ToolbarItem(placement: .navigation) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: toggleSidebar, label: {
                     Image(systemName: "sidebar.left")
+                        .accessibility(label: Text("Toggle Sidebar"))
                 })
-            }
-            ToolbarItem(placement: .primaryAction) {
                 Button(action: refresh, label: {
                     Image(systemName: "arrow.clockwise")
+                        .accessibility(label: Text("Refresh"))
                 })
+                if let account = selectedAccount, let post = selectedPost, let url = account.url(for: post) {
+                    NSSharingService.submenu(url: url)
+                        .menuStyle(BorderlessButtonMenuStyle())
+                }
             }
+            
             ToolbarItem(placement: .principal) {
                 if selectedAccount != nil {
                     Menu(statusFilter?.rawValue.capitalized ?? "Status Filter") {

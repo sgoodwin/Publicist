@@ -57,6 +57,8 @@ struct PreviewView: View {
     let blogEngine: BlogEngine
     let close: () -> Void
     
+    @Environment(\.undoManager) var undoManager
+    
     @State var paragraphs: [ParagraphItem]
     @State var selectedAccount: Account?
     
@@ -109,6 +111,10 @@ struct PreviewView: View {
             let title = fileURL.deletingPathExtension().lastPathComponent
             let item = ParagraphItem("![\(title)](\(fileURL) \"\(title)\")", image: ImageStruct(data: data, url: fileURL))
             paragraphs.insert(item, at: index)
+            
+            undoManager?.registerUndo(withTarget: self.blogEngine, handler: { (engine) in
+                self.paragraphs.remove(at: index)
+            })
         }
     }
     
@@ -131,7 +137,7 @@ struct PreviewView: View {
         if let account = selectedAccount {
             draft.markdown = paragraphs.map({ $0.line }).joined(separator: "\n")
             draft.images = paragraphs.compactMap({ $0.image })
-            try! blogEngine.post(draft, toAccount: account)
+            try! blogEngine.post(draft, toAccount: account.objectID)
             close()
         }
     }

@@ -23,7 +23,6 @@ struct ListOfAccounts: View {
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     @FetchRequest(fetchRequest: Account.canonicalOrder()) var fetchedResults: FetchedResults
     
-    let progress: Progress
     @Binding var selectedAccount: Account?
     let blogEngine: BlogEngine
     
@@ -46,7 +45,7 @@ struct ListOfAccounts: View {
             }
             .ourListStyling()
             
-            ProgressWithStatus(progress: progress)
+            ProgressWithStatus(progress: blogEngine.progress)
         }
         .navigationTitle("Accounts")
     }
@@ -55,7 +54,7 @@ struct ListOfAccounts: View {
 struct ListOfAccounts_Previews: PreviewProvider {
     
     static var previews: some View {
-        ListOfAccounts(progress: Progress(), selectedAccount: .constant(nil), blogEngine: BlogEngine(context: container.viewContext))
+        ListOfAccounts(selectedAccount: .constant(nil), blogEngine: BlogEngine(context: container.viewContext))
             .environment(\.managedObjectContext, container.viewContext)
     }
 }

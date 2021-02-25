@@ -37,12 +37,13 @@ struct ReceiptStatusView: View {
                 Button(action: unlock, label: {
                     Banner()
                 })
+                .padding(.top, 0)
                 .buttonStyle(BorderlessButtonStyle())
                 
                 Spacer()
                 
-                Button("Restore Purchase") {
-                    controller.refresh()
+                Button(action: controller.refresh) {
+                    Text("Restore Purchase")
                 }
                 .buttonStyle(BorderlessButtonStyle())
                 .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 8))
@@ -57,9 +58,12 @@ struct ReceiptStatusView: View {
 }
 
 struct SubscriptionStatusView_Preview: PreviewProvider {
+    static let subController = PurchaseController()
+    
     static var previews: some View {
         Group {
             ReceiptStatusView()
+                .environmentObject(subController)
         }
     }
 }

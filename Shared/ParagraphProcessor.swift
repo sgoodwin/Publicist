@@ -32,7 +32,7 @@ class ParagraphProcessor {
         for (index, paragraph) in paragraphs.enumerated() {
             if let imageURL = paragraph["imageURL"] as? URL {
                 group.enter()
-                try! blogEngine.upload(imageURL: imageURL, toAccount: account) { (result) in
+                try! blogEngine.upload(imageURL: imageURL, toAccount: account.objectID) { (result) in
                     switch result {
                     case .success(let remoteURL):
                         paragraphs.insert(["text": "![](\(remoteURL))"], at: index)

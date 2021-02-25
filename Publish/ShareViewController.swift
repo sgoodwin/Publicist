@@ -93,7 +93,7 @@ class ShareViewController: NSViewController {
         }
         
         let accounts = try! viewContext.fetch(Account.fetchRequest() as NSFetchRequest<Account>)
-        try! engine.post(draft, toAccount: accounts[0])
+        try! engine.post(draft, toAccount: accounts[0].objectID)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

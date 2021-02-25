@@ -20,7 +20,7 @@ extension Post {
         } else {
             request.predicate = NSPredicate(format: "account = %@", account)
         }
-        return FetchRequest(fetchRequest: request)
+        return FetchRequest(fetchRequest: request, animation: .default)
     }
 }
 
@@ -28,24 +28,39 @@ extension NSSharingService {
     static func submenu(url: URL) -> some View {
         return Menu(
             content: {
-                ForEach(NSSharingService.sharingServices(forItems: [""]), id: \.title) { item in
-                    Button(action: { item.perform(withItems: [url]) }) {
-                        Image(nsImage: item.image)
-                        Text(item.title)
-                    }
-                }
+                buttons(url: url)
             },
             label: {
-                Text("Share")
+                Image(systemName: "square.and.arrow.up")
+                    .accessibility(label: Text("Share"))
             }
-        )
+        ).menuStyle(BorderlessButtonMenuStyle())
+    }
+    
+    static func buttons(url: URL) -> some View {
+        ForEach(NSSharingService.sharingServices(forItems: [""]), id: \.title) { item in
+            Button(action: { item.perform(withItems: [url]) }) {
+                Image(nsImage: item.image)
+                Text(item.title)
+            }
+        }
     }
 }
 
+extension Post: Identifiable {
+    public var id: NSManagedObjectID {
+        return objectID
+    }
+    
+    public typealias ID = NSManagedObjectID
+}
+
 struct SearchablePostsList: View {
-    @State var selectedPost: Post?
-    @State var sharingPresented: Bool = false
-    @State var deletePromptShowing: Bool = false
+    @Binding var selectedPost: Post?
+    @State var postToDelete: Post?
+    
+    @Environment(\.undoManager) var undoManager
+    
     @Environment(\.managedObjectContext) var managedObjectContext: NSManagedObjectContext
     @EnvironmentObject var subController: PurchaseController
     
@@ -53,12 +68,12 @@ struct SearchablePostsList: View {
     let account: Account
     let blogEngine: BlogEngine
     @Binding var error: DropError?
-    @State var showingShareMenu = false
     
-    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine, error: Binding<DropError?>) {
+    init(account: Account, statusFilter: PostStatus?, blogEngine: BlogEngine, error: Binding<DropError?>, selectedPost: Binding<Post?>) {
         self.account = account
         self.blogEngine = blogEngine
         self.fetchRequest = Post.allFrom(account, status: statusFilter)
+        _selectedPost = selectedPost
         _error = error
     }
     
@@ -68,18 +83,18 @@ struct SearchablePostsList: View {
                 .onDrag({ NSItemProvider(object: account.url(for: post)! as NSURL) })
                 .frame(minHeight: 80)
                 .contextMenu {
-                    Button("View Article") {
-                        openURL(account: account, post: post)
+                    Button(action: { openURL(account: account, post: post) }) {
+                        Text("View Article")
                     }
                     if post.postStatus == .draft {
-                        Button("Publish") {
-                            try! blogEngine.publishDraftOnServer(post, toAccount: account)
+                        Button(action: { try! blogEngine.publishDraftOnServer(post.objectID, toAccount: account.objectID) }) {
+                            Text("Publish")
                         }
                     }
-                    NSSharingService.submenu(url: account.url(for: post)!)
-                    Button("Delete") {
-                        selectedPost = post
-                        deletePromptShowing.toggle()
+                    Button(action: {
+                        postToDelete = post
+                    }) {
+                        Text("Delete")
                     }
                 }
         }
@@ -93,14 +108,20 @@ struct SearchablePostsList: View {
                 subController: subController, errorBlock: { error = $0 }
             )
         )
-        .alert(isPresented: $deletePromptShowing) { () -> Alert in
+        .alert(item: $postToDelete) { (post) -> Alert in
             Alert(
                 title: Text("Delete Post"),
-                message: Text("Do you wish to delete \(selectedPost?.title ?? "Untitled")?"),
+                message: Text("Do you wish to delete \(post.title ?? "Untitled")?"),
                 primaryButton: .destructive(
                     Text("Delete"),
                     action: {
-                        try! blogEngine.delete(selectedPost!, fromAccount: account)
+                        let draft = post.draftVersion
+                        let accountID = account.objectID
+                        undoManager?.registerUndo(withTarget: self.blogEngine, handler: {
+                            try! $0.post(draft, toAccount: accountID)
+                        })
+                        try! blogEngine.delete(post.objectID, fromAccount: accountID)
+                        postToDelete = nil
                         selectedPost = nil
                     }
                 ),

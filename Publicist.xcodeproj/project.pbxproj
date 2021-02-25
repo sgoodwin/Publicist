@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B1C6EFC25C98D6900F66662 /* AppReceiptValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */; };
+		9B3789C625C1A01E00AA3F3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B3789C425C1A01E00AA3F3B /* Localizable.strings */; };
 		9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF0D2518A1900099701B /* WindowMaker.swift */; };
 		9B56081325AEFD4100143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
 		9B56081925AEFD4400143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
@@ -55,15 +57,12 @@
 		9BEC74932559345500D9326B /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74922559345500D9326B /* ReceiptValidator.swift */; };
 		9BEC74942559345500D9326B /* ReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74922559345500D9326B /* ReceiptValidator.swift */; };
 		9BEC749A2559346400D9326B /* ReceiptValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74992559346400D9326B /* ReceiptValidatorTests.swift */; };
-		9BEC74A52559357A00D9326B /* AppReceiptValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 9BEC74A42559357A00D9326B /* AppReceiptValidator */; };
 		9BEC74AB2559361200D9326B /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* PurchaseController.swift */; };
 		9BEC74B02559361700D9326B /* PurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74AA2559361200D9326B /* PurchaseController.swift */; };
 		9BEC74B6255937CB00D9326B /* SubscriptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74B5255937CB00D9326B /* SubscriptionsViewControllerTests.swift */; };
 		9BEC74D8255945B900D9326B /* RSAppMovementMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */; };
 		9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E1255955E700D9326B /* StoreKit.framework */; };
 		9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC74E72559560100D9326B /* CloudKit.framework */; };
-		9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74ED2559565800D9326B /* Configuration.storekit */; };
-		9BEC74F4255957BA00D9326B /* StoreKitFakeCert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC74F3255957BA00D9326B /* StoreKitFakeCert.cer */; };
 		9BF4E8B32518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8B42518EA7B00226C58 /* FormFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8B22518EA7B00226C58 /* FormFields.swift */; };
 		9BF4E8C12518EC7C00226C58 /* AccountMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4E8C02518EC7C00226C58 /* AccountMenu.swift */; };
@@ -111,6 +110,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B3789B825C19FF200AA3F3B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B3789C525C1A01E00AA3F3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9B3789CC25C1A02300AA3F3B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B48BF0D2518A1900099701B /* WindowMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMaker.swift; sourceTree = "<group>"; };
 		9B56081225AEFD4100143B07 /* ParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		9B586D3624D7EC280072BAE1 /* SearchablePostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchablePostsList.swift; sourceTree = "<group>"; };
@@ -125,7 +127,6 @@
 		9B84169724A349BE0054D12D /* Publicist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Publicist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B84169A24A349BE0054D12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B84169F24A349BE0054D12D /* Publicist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Publicist.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B8416A124A349BE0054D12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B8416A224A349BE0054D12D /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		9B8416A724A349BF0054D12D /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8416AB24A349BF0054D12D /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
@@ -178,7 +179,7 @@
 			files = (
 				9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */,
 				9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */,
-				9BEC74A52559357A00D9326B /* AppReceiptValidator in Frameworks */,
+				9B1C6EFC25C98D6900F66662 /* AppReceiptValidator in Frameworks */,
 				9B75F48924B73934009B8792 /* BlogEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,8 +284,9 @@
 		9B8416A024A349BE0054D12D /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				9B3789C425C1A01E00AA3F3B /* Localizable.strings */,
+				9B3789B825C19FF200AA3F3B /* Info.plist */,
 				9BEC74D7255945B900D9326B /* RSAppMovementMonitor.swift */,
-				9B8416A124A349BE0054D12D /* Info.plist */,
 				9B8416A224A349BE0054D12D /* macOS.entitlements */,
 				9B48BF0D2518A1900099701B /* WindowMaker.swift */,
 				9BEC74ED2559565800D9326B /* Configuration.storekit */,
@@ -386,7 +388,7 @@
 			name = macOS;
 			packageProductDependencies = (
 				9B75F48824B73934009B8792 /* BlogEngine */,
-				9BEC74A42559357A00D9326B /* AppReceiptValidator */,
+				9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */,
 			);
 			productName = macOS;
 			productReference = 9B84169F24A349BE0054D12D /* Publicist.app */;
@@ -482,7 +484,7 @@
 				};
 			};
 			buildConfigurationList = 9B84168E24A349BE0054D12D /* Build configuration list for PBXProject "Publicist" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -493,7 +495,7 @@
 			mainGroup = 9B84168A24A349BE0054D12D;
 			packageReferences = (
 				9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */,
-				9BEC74A32559357A00D9326B /* XCRemoteSwiftPackageReference "AppReceiptValidator" */,
+				9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */,
 			);
 			productRefGroup = 9B84169824A349BE0054D12D /* Products */;
 			projectDirPath = "";
@@ -522,8 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */,
-				9BEC74EE2559565800D9326B /* Configuration.storekit in Resources */,
-				9BEC74F4255957BA00D9326B /* StoreKitFakeCert.cer in Resources */,
+				9B3789C625C1A01E00AA3F3B /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +663,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B3789C425C1A01E00AA3F3B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B3789C525C1A01E00AA3F3B /* Base */,
+				9B3789CC25C1A02300AA3F3B /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		9BB2E099255BE126004E7367 /* ShareViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -900,6 +910,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.5;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.roundwallsoftware.Publisher;
 				PRODUCT_NAME = Publicist;
 				SDKROOT = macosx;
@@ -1113,6 +1124,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:IdeasOnCanvas/AppReceiptValidator.git";
+			requirement = {
+				branch = experiment/openSSLXCFramework;
+				kind = branch;
+			};
+		};
 		9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sgoodwin/BlogEngine.git";
@@ -1121,17 +1140,14 @@
 				kind = branch;
 			};
 		};
-		9BEC74A32559357A00D9326B /* XCRemoteSwiftPackageReference "AppReceiptValidator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:IdeasOnCanvas/AppReceiptValidator.git";
-			requirement = {
-				branch = experiment/openSSLXCFramework;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */;
+			productName = AppReceiptValidator;
+		};
 		9B60244D2563C1C100E12831 /* BlogEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
@@ -1156,11 +1172,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
 			productName = BlogEngine;
-		};
-		9BEC74A42559357A00D9326B /* AppReceiptValidator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9BEC74A32559357A00D9326B /* XCRemoteSwiftPackageReference "AppReceiptValidator" */;
-			productName = AppReceiptValidator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
