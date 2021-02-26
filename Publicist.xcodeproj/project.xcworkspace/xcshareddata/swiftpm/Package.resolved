@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AppReceiptValidator",
-        "repositoryURL": "git@github.com:IdeasOnCanvas/AppReceiptValidator.git",
+        "package": "ASN1Swift",
+        "repositoryURL": "https://github.com/tikhop/ASN1Swift",
         "state": {
-          "branch": "experiment/openSSLXCFramework",
-          "revision": "aa74238c4b79e37caa950097a59725d51fca9107",
-          "version": null
+          "branch": null,
+          "revision": "b53bee03a942623db25afc5bfb80227b2cb3b425",
+          "version": "1.2.4"
         }
       },
       {
@@ -80,6 +80,15 @@
           "branch": "production",
           "revision": "0e02f59d5caa1a6979e49107237cee13dcc0c38d",
           "version": null
+        }
+      },
+      {
+        "package": "TPInAppReceipt",
+        "repositoryURL": "https://github.com/tikhop/TPInAppReceipt.git",
+        "state": {
+          "branch": null,
+          "revision": "76d6b60deae717422cbae80ecd2be099c129818a",
+          "version": "3.0.2"
         }
       }
     ]

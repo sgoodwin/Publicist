@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B1C6EFC25C98D6900F66662 /* AppReceiptValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */; };
 		9B3789C625C1A01E00AA3F3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B3789C425C1A01E00AA3F3B /* Localizable.strings */; };
 		9B48BF0E2518A1900099701B /* WindowMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48BF0D2518A1900099701B /* WindowMaker.swift */; };
 		9B56081325AEFD4100143B07 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56081225AEFD4100143B07 /* ParagraphView.swift */; };
@@ -36,6 +35,7 @@
 		9B8416BE24A349BF0054D12D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B84169224A349BE0054D12D /* Assets.xcassets */; };
 		9B8416CE24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
 		9B8416CF24A34A680054D12D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8416CD24A34A680054D12D /* PostCell.swift */; };
+		9B8A283425E8FF6500B345FB /* TPInAppReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8A283325E8FF6500B345FB /* TPInAppReceipt */; };
 		9B8C2F30255D361300912923 /* BlogEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 9B8C2F2F255D361300912923 /* BlogEngine */; };
 		9BA172F7253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
 		9BA172F8253D7F6300A365C1 /* SwiftUIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA172F6253D7F6300A365C1 /* SwiftUIImageExtensions.swift */; };
@@ -177,9 +177,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8A283425E8FF6500B345FB /* TPInAppReceipt in Frameworks */,
 				9BEC74E2255955E700D9326B /* StoreKit.framework in Frameworks */,
 				9BEC74E82559560100D9326B /* CloudKit.framework in Frameworks */,
-				9B1C6EFC25C98D6900F66662 /* AppReceiptValidator in Frameworks */,
 				9B75F48924B73934009B8792 /* BlogEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,7 +388,7 @@
 			name = macOS;
 			packageProductDependencies = (
 				9B75F48824B73934009B8792 /* BlogEngine */,
-				9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */,
+				9B8A283325E8FF6500B345FB /* TPInAppReceipt */,
 			);
 			productName = macOS;
 			productReference = 9B84169F24A349BE0054D12D /* Publicist.app */;
@@ -495,7 +495,7 @@
 			mainGroup = 9B84168A24A349BE0054D12D;
 			packageReferences = (
 				9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */,
-				9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */,
+				9B8A283225E8FF6500B345FB /* XCRemoteSwiftPackageReference "TPInAppReceipt" */,
 			);
 			productRefGroup = 9B84169824A349BE0054D12D /* Products */;
 			projectDirPath = "";
@@ -873,6 +873,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -900,6 +901,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1015,7 +1017,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Publish/Info.plist;
@@ -1044,7 +1046,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = SYSB7DM9AH;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Publish/Info.plist;
@@ -1124,14 +1126,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:IdeasOnCanvas/AppReceiptValidator.git";
-			requirement = {
-				branch = experiment/openSSLXCFramework;
-				kind = branch;
-			};
-		};
 		9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sgoodwin/BlogEngine.git";
@@ -1140,14 +1134,17 @@
 				kind = branch;
 			};
 		};
+		9B8A283225E8FF6500B345FB /* XCRemoteSwiftPackageReference "TPInAppReceipt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tikhop/TPInAppReceipt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9B1C6EFB25C98D6900F66662 /* AppReceiptValidator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9B1C6EFA25C98D6800F66662 /* XCRemoteSwiftPackageReference "AppReceiptValidator" */;
-			productName = AppReceiptValidator;
-		};
 		9B60244D2563C1C100E12831 /* BlogEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
@@ -1162,6 +1159,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9B75F48724B73934009B8792 /* XCRemoteSwiftPackageReference "BlogEngine" */;
 			productName = BlogEngine;
+		};
+		9B8A283325E8FF6500B345FB /* TPInAppReceipt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B8A283225E8FF6500B345FB /* XCRemoteSwiftPackageReference "TPInAppReceipt" */;
+			productName = TPInAppReceipt;
 		};
 		9B8C2F2F255D361300912923 /* BlogEngine */ = {
 			isa = XCSwiftPackageProductDependency;
